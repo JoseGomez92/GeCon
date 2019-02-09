@@ -1,4 +1,7 @@
 <?php
+    require_once '../modelos/BBDDLog.php';
+?>
+<?php
     //Se verifica si se ha recibido el formulario
     if(isset($_POST['registrar'])){
         //Se recogen los datos del formulario
@@ -8,7 +11,6 @@
         $pass2 = $_POST['pass2'];
         //Se verifica que las contraseñas recibidas sean iguales
         if($pass1 == $pass2){
-            include '../modelos/bbdd/BBDDLog.php';
             //Se crea la instancia de la BBDD
             $bd = new BBDDLog();
             //Se registra el usuario
@@ -28,7 +30,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GeCon - Login</title>
+        <title>GeCon - Nuevo usuario</title>
     </head>
     <body>
         <div>

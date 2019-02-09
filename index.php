@@ -1,7 +1,9 @@
 <?php
+    include_once 'modelos/BBDDLog.php';
+?>
+<?php
     //Se verifica si se ha recibo el formulario
     if(isset($_POST['log'])){
-        include_once 'modelos/bbdd/BBDDLog.php';
         //Se verifica que los credenciales sean correctos
         $user = $_POST['user'];
         $pass = $_POST['pass'];
