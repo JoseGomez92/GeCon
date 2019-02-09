@@ -4,6 +4,7 @@
     require_once '../../modelos/BBDDEnlaces.php';
     require_once '../../modelos/TipoEnlace.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
+    require_once '../../componentes/BarraNavegacion.php';
 ?>
 <?php
     //Se verifica que el usuario este registrado para acceder a la pagina
@@ -37,9 +38,13 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificar o Borrar Enlaces</title>
+        <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
         <div>
+            <div>
+                <?php echo BarraNavegacion::crearMenu(); ?>
+            </div>
             <div>
                 <?php
                     if($accion == 'modificar') echo '<h2>Modificar Enlace</h2>';

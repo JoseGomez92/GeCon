@@ -17,7 +17,7 @@
                 //Se guarda el id del usuario en la variable de session
                 $_SESSION['id_user'] = $id;
                 //Se redirige al menu
-                header('Location: vistas/menu.php');
+                header('Location: vistas/enlaces/ver_tipos_enlaces.php');
             }
             else{
                 $mensaje = '<p>Credenciales incorrectos</p>';

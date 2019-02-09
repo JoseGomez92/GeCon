@@ -3,6 +3,7 @@
     require_once '../../modelos/GestionImagen.php';
     require_once '../../modelos/TipoEnlace.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
+    require_once '../../componentes/BarraNavegacion.php';
 ?>
 <?php
     //Se verifica que el usuario este registrado para acceder a la pagina
@@ -59,9 +60,13 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificacion de Tipos de Enlaces</title>
+        <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div
+        <div>
+            <div>
+                <?php echo BarraNavegacion::crearMenu(); ?>
+            </div>
             <div>
                 <h2>Modificación de Tipo de Enlace</h2>
             </div>

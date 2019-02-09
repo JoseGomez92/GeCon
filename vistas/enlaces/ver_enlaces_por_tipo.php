@@ -3,6 +3,7 @@
     require_once '../../modelos/Enlace.php';
     require_once '../../modelos/BBDDEnlaces.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
+    require_once '../../componentes/BarraNavegacion.php';
 ?>
 <?php
     //Se verifica que el usuario este registrado para acceder a la pagina
@@ -30,9 +31,13 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Ver Enlaces de un Tipo</title>
+        <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
         <div>
+            <div>
+                <?php echo BarraNavegacion::crearMenu(); ?>
+            </div>
             <div>
                 <h4><?php echo $tipoEnlace->getNombre(); ?></h4>
             </div>

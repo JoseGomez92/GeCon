@@ -3,6 +3,7 @@
     require_once '../../modelos/GestionImagen.php';
     require_once '../../modelos/TipoEnlace.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
+    require_once '../../componentes/BarraNavegacion.php';
 ?>
 <?php
     //Se verifica que el usuario este registrado para acceder a la pagina    
@@ -51,9 +52,13 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Gestionar Enlaces</title>
+        <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
         <div>
+            <div>
+                <?php echo BarraNavegacion::crearMenu(); ?>
+            </div>
             <div>
                 <?php
                     if(isset($mensaje)) echo $mensaje;
