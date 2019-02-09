@@ -17,7 +17,7 @@
         $idTipo = $_POST['id_tipo'];
         //Se verifica el tipo de accion a realizar
         if(isset($_POST['eliminar'])) $accion = "eliminar";
-        //Se recupera la instancia del enlace de la BBDD
+        //Se recupera la instancia del tipo de enlace de la BBDD
         $bbdd = new BBDDTiposEnlace();
         $tipoEnlace = $bbdd->obtenerTipoEnlace($idTipo);
     }
@@ -30,7 +30,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GeCon - Modificar o Borrar Tipos de Enlaces</title>
+        <title>GeCon - Modificar o Borrar Tipos de Enlace</title>
     </head>
     <body>
         <div>

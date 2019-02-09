@@ -46,7 +46,7 @@
             }
         }
         else{
-            $mensaje = "<p>Error. El fichero indicado no es una imagen de tipo JPG o PNG. No sé modifico el Tipo de Enlace.</p>";
+            $mensaje = "<p>Error. El fichero indicado no es una imagen de tipo JPG o PNG. No se modificó el Tipo de Enlace.</p>";
         }
     }
     else{

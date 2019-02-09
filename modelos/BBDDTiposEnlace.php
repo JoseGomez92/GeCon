@@ -38,7 +38,7 @@
         public function obtenerTiposEnlace($idUser){
             //Array donde se volcarán los enlaces
             $arrayTiposEnlace = array();
-            $consulta = "SELECT * FROM tipos_enlace WHERE id_usuario=$idUser";
+            $consulta = "SELECT * FROM tipos_enlace WHERE id_usuario=$idUser ORDER BY nombre ASC";
             //Obtenemos los registros
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){

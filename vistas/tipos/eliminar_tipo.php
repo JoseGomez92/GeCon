@@ -24,7 +24,7 @@
             //Se recupera la instancia del enlace de la BBDD
             $bbdd = new BBDDTiposEnlace();
             if($bbdd->eliminarTipoEnlace($tipoEnlace)){
-                $mensaje = "<p>Enlace eliminado correctamente.</p>";
+                $mensaje = "<p>Tipo de Enlace eliminado correctamente.</p>";
             }
             else{
                 $mensaje = "<p>Error. No se pudo eliminar el Tipo de Enlace.</p>";

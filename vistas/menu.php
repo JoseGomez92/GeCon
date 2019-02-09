@@ -19,10 +19,10 @@
             <div>
                 <table>
                     <tr>
-                        <td><a href="enlaces/ver_enlaces.php">Mis enlaces</a></td>
+                        <td><a href="enlaces/ver_tipos_enlaces.php">Mis enlaces</a></td>
                     </tr>
                     <tr>
-                        <td><a href="enlaces/gestionar_enlaces.php">Gestionar Enlaces</a></td>
+                        <td><a href="enlaces/gestionar_enlaces.php">Gestionar mis Enlaces</a></td>
                     </tr>
                     <tr>
                         <td><a href="tipos/gestionar_tipos.php">Gestionar mis Tipos de enlace</a></td>

@@ -70,7 +70,7 @@
                 </form>
             </div>
             <div>
-                <h4>Gestionar enlaces</h4>
+                <h4>Gestionar Tipos de Enlace</h4>
                 <div>
                     <?php
                         //Se obtienen los tipos de enlace de la BBDD

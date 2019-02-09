@@ -6,7 +6,7 @@
     class Enlace{
         
         //Atributos
-        private $idEnlace;
+        private $id;
         private $idUsuario;
         private $url;
         private $nombre;
@@ -14,16 +14,16 @@
         
         
         //Metodos
-        public function __construct($idEnlace, $idUsuario, $url, $nombre, $idTipo) {
-            $this->idEnlace = $idEnlace;
+        public function __construct($id, $idUsuario, $url, $nombre, $idTipo) {
+            $this->id = $id;
             $this->idUsuario = $idUsuario;
             $this->url = $url;
             $this->nombre = $nombre;
             $this->idTipo = $idTipo;
         }
         
-        function getIdEnlace() {
-            return $this->idEnlace;
+        function getId() {
+            return $this->id;
         }
         
         function getIdUsuario() {
@@ -42,8 +42,8 @@
             return $this->idTipo;
         }
 
-        function setIdEnlace($idEnlace) {
-            $this->idEnlace = $idEnlace;
+        function setId($id) {
+            $this->id = $id;
         }
         
         function setIdUsuario($idUsuario) {

@@ -7,7 +7,30 @@
      * Clase trabajar con los enlaces en la BBDD
      */
     class BBDDEnlaces extends BBDD{
-         
+        
+        
+        /**
+         * Metodo para obtener el enlace cuyo id corresponda con el id recibido como parametro.
+         * 
+         * Devuelve el enlace (instancia de la clase Enlace) si este se encuentra en la BBDD o null en caso contrario.
+         * 
+         * @param type $idEnlace
+         * @return \Enlace
+         */
+        public function obtenerEnlace($idEnlace){
+            $enlace = null;
+            //Se forma la consulta
+            $consulta = "SELECT * FROM enlaces WHERE id=$idEnlace";
+            //Obtenemos los registros
+            $datos = mysqli_query($this->conex,$consulta);
+            if(mysqli_num_rows($datos) > 0){
+                $reg = mysqli_fetch_array($datos);
+                $enlace = new Enlace($reg['id'], $reg['id_usuario'], $reg['url'], $reg['nombre'], $reg['id_tipo']);
+            }
+            return $enlace;
+        }
+        
+        
         /**
          * Metodo para obtener un array de instancias (objetos) de tipo enlace con los enlaces del usuario 
          * en base al tipo de interes indicado o todos (si no se indica ningun tipo concreto).
@@ -18,7 +41,7 @@
         public function obtenerEnlaces($idUser, $interes){
             //Array donde se volcarán los enlaces
             $arrayEnlaces = array();
-            $consulta = "SELECT * FROM enlaces WHERE id_usuario=$idUser AND id_tipo LIKE '$interes'";
+            $consulta = "SELECT * FROM enlaces WHERE id_usuario=$idUser AND id_tipo LIKE '$interes' ORDER BY nombre ASC";
             //Obtenemos los registros
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){
@@ -69,12 +92,11 @@
             $c = false;
             //Valores del enlace recibido
             $idEnlace = $enlace->getId();
-            $idUsuario = $enlace->getIdUsuario();
             $url = $enlace->getUrl();
             $nombre = $enlace->getNombre();
             $idTipo = $enlace->getIdTipo();
             //Se forma la consulta
-            $consulta = "UPDATE enlaces SET id_usuaurio=$idUsuario, url='$url', nombre='$nombre', id_tipo=$idTipo WHERE id=$idEnlace";
+            $consulta = "UPDATE enlaces SET url='$url', nombre='$nombre', id_tipo=$idTipo WHERE id=$idEnlace";
             $datos = mysqli_query($this->conex, $consulta);
             //Se verifica el numero de registros insertados
             if(mysqli_affected_rows($this->conex) == 1){
