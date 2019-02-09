@@ -42,16 +42,20 @@
             </div>
             <div>
                 <?php
-                    if($accion == 'modificar') echo '<form method="post" action="modificar_tipo.php">';
+                    if($accion == 'modificar') echo '<form method="post" action="modificar_tipo.php" enctype="multipart/form-data">';
                     else echo '<form method="post" action="eliminar_tipo.php">';
                 ?>
-                    <input type="hidden" name="accion_realizada" />
                     <input type="hidden" name="id_tipo" <?php echo 'value="'.$tipoEnlace->getId().'"' ?> />
                     <input type="hidden" name="id_usuario" <?php echo 'value="'.$tipoEnlace->getIdUsuario().'"' ?> />
+                    <input type="hidden" name="imagen" <?php echo 'value="'.$tipoEnlace->getImagen().'"' ?> />
+                    <div>
+                        <img width="100px" <?php echo 'src="../../recursos/iconos_tipos_enlaces/'.$tipoEnlace->getImagen().'">' ?>
+                    <div>
                     <?php
                         //Se imprime el nombre del enlace
                         if($accion == "modificar"){
                             echo '<input type="text" name="nombre" value="'.$tipoEnlace->getNombre().'" />';
+                            echo '<input type="file" name="nueva_imagen" />';
                             echo '<input type="submit" name="Modificar" value="Modificar">';
                         }
                         else{

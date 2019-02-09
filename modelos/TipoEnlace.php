@@ -6,12 +6,14 @@
         private $id;
         private $idUsuario;
         private $nombre;
+        private $imagen;
         
         //Metodos
-        function __construct($id, $idUsuario, $nombre) {
+        function __construct($id, $idUsuario, $nombre, $imagen) {
             $this->id = $id;
             $this->idUsuario = $idUsuario;
             $this->nombre = $nombre;
+            $this->imagen = $imagen;
         }
 
         function getId() {
@@ -38,6 +40,14 @@
             $this->nombre = $nombre;
         } 
         
+        function getImagen() {
+            return $this->imagen;
+        }
+
+        function setImagen($imagen) {
+            $this->imagen = $imagen;
+        }
+
     }
 
 ?>

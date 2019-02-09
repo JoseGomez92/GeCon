@@ -6,8 +6,7 @@
     /**
      * Clase trabajar con los tipos de enlaces en la BBDD.
      */
-    class BBDDTiposEnlace extends BBDD{
-        
+    class BBDDTiposEnlace extends BBDD{        
         
         /**
          * Metodo para obtener la instancia del enlace correspondiente al valor del id recibido.
@@ -25,7 +24,7 @@
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){
                 $reg = mysqli_fetch_array($datos);
-                $tipoEnlace = new TipoEnlace($reg['id'], $reg['id_usuario'], $reg['nombre']);                 
+                $tipoEnlace = new TipoEnlace($reg['id'], $reg['id_usuario'], $reg['nombre'], $reg['imagen']);                 
             }
             return $tipoEnlace;
         }
@@ -44,7 +43,7 @@
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){
                 while($reg = mysqli_fetch_array($datos)){
-                    $tipoEnlace = new TipoEnlace($reg['id'], $reg['id_usuario'], $reg['nombre']);
+                    $tipoEnlace = new TipoEnlace($reg['id'], $reg['id_usuario'], $reg['nombre'], $reg['imagen']);
                     //Se añaden nombre del enlace y la url al array asociativo de valores
                     $arrayTiposEnlace[] = $tipoEnlace;
                 }   
@@ -65,8 +64,9 @@
             //Valores del enlace recibido
             $idUsuario = $tipoEnlace->getIdUsuario();
             $nombre = $tipoEnlace->getNombre();
+            $imagen = $tipoEnlace->getImagen();
             //Se forma la consulta
-            $consulta = "INSERT INTO tipos_enlace (id_usuario, nombre) VALUES ($idUsuario, '$nombre')";
+            $consulta = "INSERT INTO tipos_enlace (id_usuario, nombre, imagen) VALUES ($idUsuario, '$nombre', '$imagen')";
             $datos = mysqli_query($this->conex, $consulta);
             //Se verifica el numero de registros insertados
             if(mysqli_affected_rows($this->conex) == 1){
@@ -91,8 +91,9 @@
             $id = $tipoEnlace->getId();
             $idUsuario = $tipoEnlace->getIdUsuario();
             $nombre = $tipoEnlace->getNombre();
+            $imagen = $tipoEnlace->getImagen();
             //Se forma la consulta
-            $consulta = "UPDATE tipos_enlace SET id_usuario=$idUsuario, nombre='$nombre' WHERE id=$id";
+            $consulta = "UPDATE tipos_enlace SET id_usuario=$idUsuario, nombre='$nombre', imagen='$imagen' WHERE id=$id";
             $datos = mysqli_query($this->conex, $consulta);
             //Se verifica el numero de registros insertados
             if(mysqli_affected_rows($this->conex) == 1){

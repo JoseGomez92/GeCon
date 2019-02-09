@@ -1,5 +1,6 @@
 <?php
     require_once '../../funciones/comprobarLog.php';
+    require_once '../../modelos/GestionImagen.php';
     require_once '../../modelos/TipoEnlace.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
 ?>
@@ -11,19 +12,41 @@
     $mensaje = "";
     //Bloque para modificar los datos del tipo de enlace
     if(isset($_POST['id_tipo'])){
+        $c = true;//Variable para controlar la subida de la imagen
         //Se recuperan los datos del tipo de enlace
         $idTipo = $_POST['id_tipo'];
         $idUsuario = $_POST['id_usuario'];
         $nombre = $_POST['nombre'];
-        //Se crea el tipo de enlace
-        $tipoEnlace = new TipoEnlace($idTipo, $idUsuario, $nombre);
-        //Se recupera la instancia del enlace de la BBDD
-        $bbdd = new BBDDTiposEnlace();
-        if($bbdd->modificarTipoEnlace($tipoEnlace)){
-            $mensaje = "<p>Enlace modificado correctamente.</p>";
+        $imagen = $_POST['imagen'];
+        //Se verifica si se ha recibido una imagen para poner esta
+        if(isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['name'] != ''){
+            //Se verifica que se ha recibido una imagen con extension PNG o JPG
+            if(GestionImagen::comprobarExtensionImagen($_FILES['nueva_imagen'])){
+                //Se borra la imagen anterior
+                if(GestionImagen::eliminarImagen($imagen)){
+                    //Se sube la imagen al servidor
+                    $imagen = GestionImagen::subirImagen($_FILES['nueva_imagen'], $idUsuario, $nombre);
+                    $c = true;
+                }
+            }
+            else{
+                $c = false;
+            }
+        }
+        if($c){
+             //Se crea el tipo de enlace
+            $tipoEnlace = new TipoEnlace($idTipo, $idUsuario, $nombre, $imagen);
+            //Se recupera la instancia del enlace de la BBDD
+            $bbdd = new BBDDTiposEnlace();
+            if($bbdd->modificarTipoEnlace($tipoEnlace)){
+                $mensaje = "<p>Enlace modificado correctamente.</p>";
+            }
+            else{
+                $mensaje = "<p>Error. No se pudo modificar el Tipo de Enlace.</p>";
+            }
         }
         else{
-            $mensaje = "<p>Error. No se pudo modificar el Tipo de Enlace.</p>";
+            $mensaje = "<p>Error. El fichero indicado no es una imagen de tipo JPG o PNG. No sé modifico el Tipo de Enlace.</p>";
         }
     }
     else{
