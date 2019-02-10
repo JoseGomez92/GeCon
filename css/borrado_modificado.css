@@ -1,0 +1,11 @@
+.contenedor-section{
+	min-height: 300px;
+}
+
+.mensaje-exito, .mensaje-error{
+	margin-top: 50px;
+}
+
+a{
+	margin-top: 50px;
+}

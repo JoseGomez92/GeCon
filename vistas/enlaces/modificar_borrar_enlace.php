@@ -38,63 +38,85 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificar o Borrar Enlaces</title>
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
+        <link type="text/css" rel="stylesheet" href="../../css/modificar-borrar-enlace.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <?php
-                    if($accion == 'modificar') echo '<h2>Modificar Enlace</h2>';
-                    else echo '<h2>Eliminar Enlace</h2>';
-                ?>
-            </div>
-            <div>
-                <?php
-                    if($accion == 'modificar') echo '<form method="post" action="modificar_enlace.php">';
-                    else echo '<form method="post" action="eliminar_enlace.php">';
-                ?>
-                    <input type="hidden" name="id_enlace" <?php echo 'value="'.$enlace->getId().'"' ?> />
-                    <input type="hidden" name="id_usuario" <?php echo 'value="'.$enlace->getIdUsuario().'"'; ?> />
-                    <?php
-                        //Se imprime el nombre del enlace
-                        if($accion == "modificar"){
-                            echo '<input type="url" name="url" value="'.$enlace->getUrl().'" required />';
-                            echo '<input type="text" name="nombre" value="'.$enlace->getNombre().'" required />';
-                            echo '<select name="id_tipo">';
-                                //Se imprimen los tipos de enlace del usuario
-                                foreach($arrayTipos as $tipoEnlace){
-                                    if($tipoEnlace->getId() == $enlace->getIdTipo()){
-                                        echo '<option value="'.$tipoEnlace->getId().'" selected>'.$tipoEnlace->getNombre().'</option>';
-                                    }
-                                    else{
-                                        echo '<option value="'.$tipoEnlace->getId().'">'.$tipoEnlace->getNombre().'</option>';
-                                    }
-                                }
-                            echo '</select>';
-                            echo '<input type="submit" name="Modificar" value="Modificar">';
-                        }
-                        else{
-                            echo '<input type="hidden" name="id_tipo" value="'.$enlace->getIdTipo().'" />';
-                            //Si lo que se hará sera un borrado, se marcan los campos como solo lectura
-                            foreach($arrayTipos as $tipoEnlace){
-                                if($tipoEnlace->getId() == $enlace->getIdTipo()){
-                                    echo '<p>'.$tipoEnlace->getNombre().'</p>';
-                                }
-                            }
-                            echo '<input type="url" name="url" value="'.$enlace->getUrl().'" readonly />';
-                            echo '<input type="text" name="nombre" value="'.$enlace->getNombre().'" readonly />';
-                            echo '<input type="submit" name="Eliminar" value="Eliminar">';
-                        }
-                    ?>
-                </form>
-            </div>
-            <div>
-                <iframe <?php echo 'src="'.$enlace->getUrl().'"' ?>></iframe>
-                <a <?php echo 'href="'.$enlace->getUrl().'"' ?> target="blank">Ver en la Web</a>
-            </div>
+        <div class="contenedor-body">
+            <header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+                			<?php
+								if($accion == 'modificar') echo '<h3>Modificar Enlace</h3>';
+								else echo '<h3>Eliminar Enlace</h3>';
+							?>
+            			</div>
+						<div class="cuerpo-seccion">
+							<div>
+								<?php
+									if($accion == 'modificar') echo '<form method="post" action="modificar_enlace.php">';
+									else echo '<form method="post" action="eliminar_enlace.php">';
+								?>
+									<input type="hidden" name="id_enlace" <?php echo 'value="'.$enlace->getId().'"' ?> />
+									<input type="hidden" name="id_usuario" <?php echo 'value="'.$enlace->getIdUsuario().'"'; ?> />
+									<?php
+										//Se imprime el nombre del enlace
+										if($accion == "modificar"){
+											echo '<input type="url" name="url" value="'.$enlace->getUrl().'" required />';
+											echo '<input type="text" name="nombre" value="'.$enlace->getNombre().'" required />';
+											echo '<select name="id_tipo">';
+												//Se imprimen los tipos de enlace del usuario
+												foreach($arrayTipos as $tipoEnlace){
+													if($tipoEnlace->getId() == $enlace->getIdTipo()){
+														echo '<option value="'.$tipoEnlace->getId().'" selected>'.$tipoEnlace->getNombre().'</option>';
+													}
+													else{
+														echo '<option value="'.$tipoEnlace->getId().'">'.$tipoEnlace->getNombre().'</option>';
+													}
+												}
+											echo '</select>';
+											echo '<input type="submit" name="Modificar" value="Modificar">';
+										}
+										else{
+											echo '<input type="hidden" name="id_tipo" value="'.$enlace->getIdTipo().'" />';
+											//Si lo que se hará sera un borrado, se marcan los campos como solo lectura
+											echo '<input type="url" name="url" value="'.$enlace->getUrl().'" readonly />';
+											echo '<input type="text" name="nombre" value="'.$enlace->getNombre().'" readonly />';
+											foreach($arrayTipos as $tipoEnlace){
+												if($tipoEnlace->getId() == $enlace->getIdTipo()){
+													echo '<p><b>'.$tipoEnlace->getNombre().'</b></p>';
+												}
+											}
+											echo '<input type="submit" name="Eliminar" value="Eliminar">';
+										}
+									?>
+								</form>
+							</div>
+							<div>
+								<a <?php echo 'href="'.$enlace->getUrl().'"' ?> target="blank">Ver en una nueva pestaña</a>
+								<div class="contenedor-iframe">
+									<iframe <?php echo 'src="'.$enlace->getUrl().'"' ?>></iframe>
+								</div>
+							</div>
+						</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>

@@ -23,10 +23,10 @@
         //Se obtiene la instancia del enlace de la BBDD
         $bbdd = new BBDDEnlaces();
         if($bbdd->eliminarEnlace($enlace)){
-            $mensaje = "<p>Enlace eliminado correctamente.</p>";
+            $mensaje = '<p class="mensaje-exito">Enlace eliminado correctamente.</p>';
         }
         else{
-            $mensaje = "<p>Error. No se pudo eliminar el Enlace.</p>";
+            $mensaje = '<p class="mensaje-error">Error. No se pudo eliminar el Enlace.</p>';
         }
     }
     else{
@@ -39,22 +39,41 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Borrado de Enlaces</title>
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
+        <link type="text/css" rel="stylesheet" href="../../css/borrado_modificado.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <h2>Borrado de Enlace</h2>
-            </div>
-            <div>
-                <?php if(isset($mensaje)) echo $mensaje; ?>
-            </div>
-            <div>
-                <a href="gestionar_enlaces.php">Volver</a>
-            </div>
+        <div class="contenedor-body">
+            <header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+                			<h3>Borrado de Enlace</h3>
+            			</div>
+						<div class="cuerpo-seccion">
+							<?php if(isset($mensaje)) echo '<div>'.$mensaje.'</div>'; ?>
+							<div>
+								<a href="gestionar_enlaces.php">Volver</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section> 
         </div>
     </body>
 </html>

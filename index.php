@@ -20,11 +20,11 @@
                 header('Location: vistas/enlaces/ver_tipos_enlaces.php');
             }
             else{
-                $mensaje = '<p>Credenciales incorrectos</p>';
+                $mensaje = '<p class="mensaje-error">Credenciales incorrectos</p>';
             }
         }
         else{
-            $mensaje = '<p>El captcha que ha indicado es erroneo</p>';
+            $mensaje = '<p class="mensaje-error">El captcha que ha indicado es erroneo</p>';
         }
     }
 ?>
@@ -42,15 +42,15 @@
         <div class="contenedor-body">
             <section>
 				<div class="contenedor-section">
-					<div class="contenedor-section-principal">
+					<div class="contenedor-seccion-principal">
 						<div class="section-principal">
 							<div class="cabecera-seccion">
 								<h3>GeCon</h3>
 							</div>
-							<?php
-								if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
-							?>
-							<div class="contenedor-form-acceso">
+							<div class="cuerpo-seccion">
+								<?php
+									if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
+								?>
 								<form method="post">
 									<input type="text" name="user" placeholder="Usuario" required />
 									<input type="password" name="pass" placeholder="Contraseña" required />

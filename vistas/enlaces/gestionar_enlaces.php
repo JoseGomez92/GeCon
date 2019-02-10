@@ -22,8 +22,11 @@
         //Se inserta en la BBDD
         $bbdd = new BBDDEnlaces();
         if($bbdd->anadirEnlace($enlace)){
-            $mensaje = '<p>Enlace añadido correctamente</p>';
+            $mensaje = '<p class="mensaje-exito">Enlace añadido correctamente</p>';
         }
+		else{
+			$mensaje = '<p class="mensaje-error">Error. No se pudo añadir el enlace</p>';
+		}
     }
 ?>
 <?php
@@ -41,70 +44,94 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Gestionar Enlaces</title>
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <?php if(isset($mensaje)) echo $mensaje; ?>
-            </div>
-            <div>
-                <h4>Añadir enlace</h4>
-                <?php
-                    //Se verifican que existan tipos de enlace para el usuario
-                    if(count($arrayTipos) > 0){
-                        echo '<form method="post">',
-                            '<div>',
-                                '<input type="url" name="url" placeholder="Direccion URL" required />',
-                                '<input type="text" name="nombre" placeholder="Nombre para el enlace" required />',
-                                '<select name="tipo">';
-                                //Se imprimen los tipos de enlace del usuario
-                                foreach($arrayTipos as $tipoEnlace){
-                                    echo '<option value="'.$tipoEnlace->getId().'">'.$tipoEnlace->getNombre().'</option>';
-                                }
-                                echo '</select>',
-                                '<input type="submit" value="Añadir" name="anadir" />',
-                                '</div>',
-                        '</form>';
-                    }
-                    else{
-                        echo '<p>Añada el un Tipo de Enlace para posteriormente poder añadir los enlaces que desee a este.</p>';
-                        echo '<a href="../tipos/gestionar_tipos.php">Añadir Tipo de Enlace</a>';
-                    }
-                ?>
-            </div>
-            <div>
-                <h4>Gestionar enlaces</h4>
-                <div>
-                    <?php
-                        if(count($arrayEnlaces) > 0){
-                            //Se muestran los enlaces y las opciones para modificar y borrar
-                            foreach ($arrayEnlaces as $enlace){
-                                echo '<form method="post" action="modificar_borrar_enlace.php">',
-                                    '<input type="hidden" name="id_enlace" value="'.$enlace->getId().'" />',
-                                    '<input type="hidden" name="id_usuaro" value="'.$enlace->getIdUsuario().'" />',
-                                    '<p>'.$enlace->getNombre().'</p>',
-                                    '<p>'.$enlace->getUrl().'</p>';
-                                    //Se busca el tipo de enlace para imprimir este
-                                    foreach($arrayTipos as $tipo){
-                                        if($enlace->getIdTipo() == $tipo->getId()){
-                                            echo '<p>'.$tipo->getNombre().'<p>';
-                                        }
-                                    }
-                                    echo '<input type="submit" name="modificar" value="Modificar" />',
-                                    '<input type="submit" name="eliminar" value="Eliminar" />',
-                                '</form>';
-                            }
-                        }
-                        else{
-                            echo '<p>Aún no ha indicado ningún enlace.</p>';
-                        }                 
-                    ?>
-                </div>
-            </div>
+        <div class="contenedor-body">
+			<header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-seccion">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+							<h3>Añadir Enlace</h3>
+						</div>
+						<div class="cuerpo-seccion">
+							<?php if(isset($mensaje)) echo '<div>'.$mensaje.'</div>'; ?>
+							<div>
+								<?php
+									//Se verifican que existan tipos de enlace para el usuario
+									if(count($arrayTipos) > 0){
+										echo '<form method="post">',
+											'<div>',
+												'<input type="url" name="url" placeholder="Direccion URL" required />',
+												'<input type="text" name="nombre" placeholder="Nombre para el enlace" required />',
+												'<select name="tipo">';
+												//Se imprimen los tipos de enlace del usuario
+												foreach($arrayTipos as $tipoEnlace){
+													echo '<option value="'.$tipoEnlace->getId().'">'.$tipoEnlace->getNombre().'</option>';
+												}
+												echo '</select>',
+												'<input type="submit" value="Añadir" name="anadir" />',
+												'</div>',
+										'</form>';
+									}
+									else{
+										echo '<p>Añada el un Tipo de Enlace para posteriormente poder añadir los enlaces que desee a este.</p>';
+										echo '<a href="../tipos/gestionar_tipos.php">Añadir Tipo de Enlace</a>';
+									}
+								?>
+							</div>
+						</div>
+					</div>
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+							<h3>Gestionar Enlaces</h3>
+						</div>
+						<div class="cuerpo-seccion">
+							<div>
+								<?php
+									if(count($arrayEnlaces) > 0){
+										//Se muestran los enlaces y las opciones para modificar y borrar
+										foreach ($arrayEnlaces as $enlace){
+											echo '<form method="post" action="modificar_borrar_enlace.php">',
+												'<input type="hidden" name="id_enlace" value="'.$enlace->getId().'" />',
+												'<input type="hidden" name="id_usuaro" value="'.$enlace->getIdUsuario().'" />',
+												'<p><b>Nombre:</b>'.$enlace->getNombre().'</p>',
+												'<p><b>Url:</b>'.$enlace->getUrl().'</p>';
+												//Se busca el tipo de enlace para imprimir este
+												foreach($arrayTipos as $tipo){
+													if($enlace->getIdTipo() == $tipo->getId()){
+														echo '<p><b>Categoria:</b>'.$tipo->getNombre().'<p>';
+													}
+												}
+												echo '<input style="display:inline" type="submit" name="modificar" value="Modificar" />',
+												'<input style="display:inline" type="submit" name="eliminar" value="Eliminar" />',
+											'</form>';
+										}
+									}
+									else{
+										echo '<p>Aún no ha indicado ningún enlace.</p>';
+									}                 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>

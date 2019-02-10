@@ -31,7 +31,7 @@
 				<table class="contenedor-header">
 					<tr>
 						<td class="contenedor-logo">
-							<img src="imagenes/logo.png" alt="logo-GeCon">
+							<h3>Gecon</h3>
 						</td>
 						<td>
 							<?php echo BarraNavegacion::crearMenu(); ?>
