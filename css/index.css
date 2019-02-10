@@ -1,0 +1,54 @@
+.cabecera-seccion h3{
+	font-size: 48px;
+	color: darkgoldenrod;
+}
+
+.contenedor-form-acceso{
+	text-align: center;
+}
+
+form{
+	text-align: center;
+}
+
+input{
+	display: block;
+	margin: 30px auto;
+	text-align: center;
+}
+
+input[type="text"], input[type="password"]{
+	font-size: 24px;
+	background-color: inherit;
+	border-bottom: 2px solid black;
+}
+
+input[type="text"]:focus, input[type="password"]:focus{
+	border-bottom: 2px solid goldenrod;
+}
+
+input[type="submit"]{
+	padding: 5px 15px;
+	font-size: 18px;
+	text-transform: uppercase;
+	color: whitesmoke;
+	background-color: darkgoldenrod;
+	border: 2px solid transparent;
+	transition: .1s;
+}
+
+input[type="submit"]:hover{
+	border: 2px solid dimgray;
+}
+
+a{
+	display: block;
+	text-align: center;
+	color: dimgray;
+	font-size: 14px;
+	transition: .1s;
+}
+
+a:hover{
+	color:goldenrod;
+}

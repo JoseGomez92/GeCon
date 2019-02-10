@@ -35,12 +35,12 @@
         public static function crearMenu(){
             //Se obtiene la seccion actual
             $seccionActual = self::obtenerSeccionActual();
-            $cod = '<nav><ul>';
+            $cod = '<nav><ul class="lista-items-nav">';
             foreach(self::$items as $key => $val){
                 if($seccionActual == $key){
-                    $cod .= '<li style="text-decoration: underline dotted red;"><a href="'.self::$uriPrincipal.$val.'">'.$key.'</a></li>';
+                    $cod .= '<li class="item-nav"><a class="enlace-nav border-bot" href="'.self::$uriPrincipal.$val.'">'.$key.'</a></li>';
                 }
-                else $cod .= '<li><a href="'.self::$uriPrincipal.$val.'">'.$key.'</a></li>';
+                else $cod .= '<li class="item-nav"><a class="enlace-nav" href="'.self::$uriPrincipal.$val.'">'.$key.'</a></li>';
             }
             $cod .= '</ul></nav>';
             return $cod;

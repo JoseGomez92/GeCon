@@ -20,37 +20,55 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Ver Tipos de Enlaces</title>
+		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <h2>¿Que quiero ver?</h2>
-            </div>
-            <div>
-                <?php
-                    //Se muestran los tipos de enlace del usuario
-                    if(count($arrayTipos) > 0){
-                        echo '<table><tr>';
-                            foreach($arrayTipos as $tipo){    
-                                echo '<td>';
-                                echo '<a href="ver_enlaces_por_tipo.php?tipo='.$tipo->getId().'">',
-                                        '<img height="100px" src="../../recursos/iconos_tipos_enlaces/'.$tipo->getImagen().'" alt="'.$tipo->getImagen().'">',
-                                        '<p>'.$tipo->getNombre().'</p>',
-                                '</a>';
-                                echo '</td>';
-                            }
-                        echo '</table></tr>';
-                    }
-                    else{
-                        echo '<p>¡Vaya! Aún no hay ningún Tipo de enlace para poder ver.</p>';
-                        echo '<a href="gestionar_enlaces.php">Añadir un enlace</a>';
-                    }
-                ?>
-            </div>
+        <div class="contenedor-body">
+			<header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<img src="imagenes/logo.png" alt="logo-GeCon">
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+            			<div class="cabecera-seccion">
+                			<h3>¿Que quiero ver?</h3>
+            			</div>
+            			<div class="cuerpo-seccion">
+							<?php
+								//Se muestran los tipos de enlace del usuario
+								if(count($arrayTipos) > 0){
+									echo '<div class="items-seccion">';
+										foreach($arrayTipos as $tipo){    
+											echo '<div class="item">';
+											echo '<a href="ver_enlaces_por_tipo.php?tipo='.$tipo->getId().'">',
+													'<img height="100px" src="../../recursos/iconos_tipos_enlaces/'.$tipo->getImagen().'" alt="'.$tipo->getImagen().'">',
+													'<p>'.$tipo->getNombre().'</p>',
+											'</a>';
+											echo '</div>';
+										}
+									echo '<div>';
+								}
+								else{
+									echo '<p>¡Vaya! Aún no hay ningún Tipo de enlace para poder ver.</p>';
+									echo '<a href="gestionar_enlaces.php">Añadir un enlace</a>';
+								}
+							?>
+						</div>
+					</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>
