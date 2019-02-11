@@ -30,40 +30,59 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GeCon - Ver Enlaces de un Tipo</title>
+        <title>GeCon - Ver Enlaces por Categoria</title>
+		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <h4><?php echo $tipoEnlace->getNombre(); ?></h4>
-            </div>
-            <div>
-                <div>
-                    <?php
-                        if(count($arrayEnlaces) > 0){
-                            //Se muestran los enlaces
-                            foreach ($arrayEnlaces as $enlace){
-                                echo '<div>';
-                                echo '<a href="'.$enlace->getUrl().'" target="blank">';
-                                //Se imprime el favicon del sitio
-                                echo '<span><img width="32px" src="http://www.google.com/s2/favicons?domain='.$enlace->getUrl().'" alt="favicon"></span>';
-                                //Se imprime el nombre que el usuario le ha dado al enlace
-                                echo '<span>'.$enlace->getNombre().'</span>';
-                                echo '</a>';
-                                echo '</div>';
-                            }
-                        }
-                        else{
-                            echo '<p>Aún no ha añadido ningún enlace de este tipo.</p>';
-                            echo '<a href="getionar_enlaces">Añadir enlaces</a>';
-                        }                 
-                    ?>
-                </div>
-            </div>
+        <div class="contenedor-body">
+			<header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+                			<h3><?php echo $tipoEnlace->getNombre(); ?></h3>
+            			</div>
+						<div class="cuerpo-seccion">
+							<div>
+								<?php
+									if(count($arrayEnlaces) > 0){
+										//Se muestran los enlaces
+										foreach ($arrayEnlaces as $enlace){
+											echo '<div>';
+											echo '<a href="'.$enlace->getUrl().'" target="blank">';
+											//Se imprime el favicon del sitio
+											echo '<span><img width="32px" src="http://www.google.com/s2/favicons?domain='.$enlace->getUrl().'" alt="favicon"></span>';
+											//Se imprime el nombre que el usuario le ha dado al enlace
+											echo '<span>'.$enlace->getNombre().'</span>';
+											echo '</a>';
+											echo '</div>';
+										}
+									}
+									else{
+										echo '<p>Aún no ha añadido ningún enlace de este tipo.</p>';
+										echo '<a href="gestionar_enlaces.php">Añadir enlaces</a>';
+									}                 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>

@@ -40,14 +40,14 @@
             //Se recupera la instancia del enlace de la BBDD
             $bbdd = new BBDDTiposEnlace();
             if($bbdd->modificarTipoEnlace($tipoEnlace)){
-                $mensaje = "<p>Enlace modificado correctamente.</p>";
+                $mensaje = '<p class="mensaje-exito">Categoria modificada correctamente</p>';
             }
             else{
-                $mensaje = "<p>Error. No se pudo modificar el Tipo de Enlace.</p>";
+                $mensaje = '<p class="mensaje-error">Error. No se pudo modificar la categoria</p>';
             }
         }
         else{
-            $mensaje = "<p>Error. El fichero indicado no es una imagen de tipo JPG o PNG. No se modificó el Tipo de Enlace.</p>";
+            $mensaje = '<p class="mensaje-error">Error. El fichero indicado no es una imagen de tipo JPG o PNG. No se modificó el Tipo de Enlace</p>';
         }
     }
     else{
@@ -59,23 +59,43 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GeCon - Modificacion de Tipos de Enlaces</title>
+        <title>GeCon - Modificacion de Categorias</title>
+		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
+		<link type="text/css" rel="stylesheet" href="../../css/borrado_modificado.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <h2>Modificación de Tipo de Enlace</h2>
-            </div>
-            <div>
-                <?php if(isset($mensaje)) echo $mensaje; ?>
-            </div>
-            <div>
-                <a href="gestionar_tipos.php">Volver</a>
-            </div>
+        <div class="contenedor-body">
+            <header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+							<h3>Modificacion de Categoria</h3>
+						</div>
+						<div class="cuerpo-seccion">
+							<?php if(isset($mensaje)) echo '<div>'.$mensaje.'</div>'; ?>
+							<div>
+								<a href="gestionar_tipos.php">Volver</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>

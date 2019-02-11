@@ -31,46 +31,67 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>GeCon - Modificar o Borrar Tipos de Enlace</title>
+        <title>GeCon - Modificar o Borrar Categorias</title>
+		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
-        <div>
-            <div>
-                <?php echo BarraNavegacion::crearMenu(); ?>
-            </div>
-            <div>
-                <?php
-                    if($accion == 'modificar') echo '<h2>Modificar Tipo de Enlace</h2>';
-                    else echo '<h2>Eliminar Tipo de Enlace</h2>';
-                ?>
-            </div>
-            <div>
-                <?php
-                    if($accion == 'modificar') echo '<form method="post" action="modificar_tipo.php" enctype="multipart/form-data">';
-                    else echo '<form method="post" action="eliminar_tipo.php">';
-                ?>
-                    <input type="hidden" name="id_tipo" <?php echo 'value="'.$tipoEnlace->getId().'"' ?> />
-                    <input type="hidden" name="id_usuario" <?php echo 'value="'.$tipoEnlace->getIdUsuario().'"' ?> />
-                    <input type="hidden" name="imagen" <?php echo 'value="'.$tipoEnlace->getImagen().'"' ?> />
-                    <div>
-                        <img width="100px" <?php echo 'src="../../recursos/iconos_tipos_enlaces/'.$tipoEnlace->getImagen().'">' ?>
-                    <div>
-                    <?php
-                        //Se imprime el nombre del enlace
-                        if($accion == "modificar"){
-                            echo '<input type="text" name="nombre" value="'.$tipoEnlace->getNombre().'" />';
-                            echo '<input type="file" name="nueva_imagen" />';
-                            echo '<input type="submit" name="Modificar" value="Modificar">';
-                        }
-                        else{
-                            //Si lo que se hará sera un borrado, se marca el nombre como solo lectura
-                            echo '<input type="text" name="nombre" value="'.$tipoEnlace->getNombre().'" readonly />';
-                            echo '<input type="submit" name="Eliminar" value="Eliminar">';
-                        }
-                    ?>
-                </form>
-            </div>
+        <div class="contenedor-body">
+			<header>
+				<table class="contenedor-header">
+					<tr>
+						<td class="contenedor-logo">
+							<h3>Gecon</h3>
+						</td>
+						<td>
+							<?php echo BarraNavegacion::crearMenu(); ?>
+						</td>
+					</tr>
+				</table>
+			</header>
+			<section>
+				<div class="contenedor-section">
+					<div class="contenedor-seccion-principal">
+						<div class="cabecera-seccion">
+                			<?php
+								if($accion == 'modificar') echo '<h3>Modificar Categoria</h3>';
+								else echo '<h3>Eliminar Categoria</h3>';
+							?>
+            			</div>
+						<div class="cuerpo-seccion">
+							<div>
+								<?php
+									if($accion == 'modificar') echo '<form method="post" action="modificar_tipo.php" enctype="multipart/form-data">';
+									else echo '<form method="post" action="eliminar_tipo.php">';
+								?>
+									<input type="hidden" name="id_tipo" <?php echo 'value="'.$tipoEnlace->getId().'"' ?> />
+									<input type="hidden" name="id_usuario" <?php echo 'value="'.$tipoEnlace->getIdUsuario().'"' ?> />
+									<input type="hidden" name="imagen" <?php echo 'value="'.$tipoEnlace->getImagen().'"' ?> />
+									<div style="text-align:center;">
+										<img height="150px" <?php echo 'src="../../recursos/iconos_tipos_enlaces/'.$tipoEnlace->getImagen().'">'; ?> />
+									</div>
+									<?php
+										//Se imprime el nombre del enlace
+										if($accion == "modificar"){
+											echo '<input type="text" name="nombre" value="'.$tipoEnlace->getNombre().'" />';
+											echo '<input type="file" name="nueva_imagen" />';
+											echo '<input type="submit" name="Modificar" value="Modificar">';
+										}
+										else{
+											//Si lo que se hará sera un borrado, se marca el nombre como solo lectura
+											echo '<input type="text" name="nombre" value="'.$tipoEnlace->getNombre().'" readonly />';
+											echo '<input type="submit" name="Eliminar" value="Eliminar">';
+										}
+									?>
+								<?php echo '</form>'; ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
         </div>
     </body>
 </html>

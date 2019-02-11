@@ -20,6 +20,7 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Ver Tipos de Enlaces</title>
+		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
 		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
@@ -43,7 +44,7 @@
 				<div class="contenedor-section">
 					<div class="contenedor-seccion-principal">
             			<div class="cabecera-seccion">
-                			<h3>¿Que quiero ver?</h3>
+                			<h3>¿Que quieres ver?</h3>
             			</div>
             			<div class="cuerpo-seccion">
 							<?php

@@ -38,10 +38,11 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificar o Borrar Enlaces</title>
+		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
-        <link type="text/css" rel="stylesheet" href="../../css/modificar-borrar-enlace.css">
+        <link type="text/css" rel="stylesheet" href="../../css/modificar_borrar_enlace.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
