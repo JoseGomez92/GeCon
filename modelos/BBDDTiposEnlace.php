@@ -116,10 +116,14 @@
             $c = false;
             //ID del tipo enlace a recibido (el cual se borrará)
             $id = $tipoEnlace->getId();
-            //Se forma la consulta
+            //Se forma la consulta para borrar todos los enlaces del tipo
+            $consulta = "DELETE FROM enlaces WHERE id_tipo=$id";
+            //Se eliminan los enlaces
+            $datos = mysqli_query($this->conex, $consulta);
+            //Se forma la consulta para borrar el tipo
             $consulta = "DELETE FROM tipos_enlace WHERE id=$id";
             $datos = mysqli_query($this->conex, $consulta);
-            //Se verifica el numero de registros insertados
+            //Se verifica el numero de registros eliminados
             if(mysqli_affected_rows($this->conex) == 1){
                 $c = true;
             }

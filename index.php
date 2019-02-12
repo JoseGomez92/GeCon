@@ -2,6 +2,8 @@
     require_once 'modelos/BBDDLog.php';
 ?>
 <?php
+    $user = "";
+    $pass="";
     //Se verifica si se ha recibo el formulario
     if(isset($_POST['log'])){
         //Se inicia session
@@ -42,34 +44,34 @@
     <body>
         <div class="contenedor-body">
             <section>
-				<div class="contenedor-section">
-					<div class="contenedor-seccion-principal">
-						<div class="section-principal">
-							<div class="cabecera-seccion">
-								<h3>GeCon</h3>
-							</div>
-							<div class="cuerpo-seccion">
-								<?php
-									if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
-								?>
-								<form method="post">
-									<input type="text" name="user" placeholder="Usuario" required />
-									<input type="password" name="pass" placeholder="Contraseña" required />
-									<div>
-										<!-- Se introduce el captcha -->
-										<image src="captcha/captcha.php" />
-										<input type="text" name="captcha" placeholder="Captcha" required />
-									</div>
-									<input type="submit" value="Acceder" name="log" />
-								</form>
-							</div>
-							<div>
-								<a href="vistas/nuevo_usuario.php">No estoy registrado. Resgistrarme.</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+		<div class="contenedor-section">
+                    <div class="contenedor-seccion-principal">
+			<div class="section-principal">
+                            <div class="cabecera-seccion">
+				<h3>GeCon</h3>
+                            </div>
+                            <div class="cuerpo-seccion">
+                            <?php
+				if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
+                            ?>
+                            <form method="post">
+				<input type="text" name="user" placeholder="Usuario" <?php if($user != "") echo 'value="'.$user.'"' ?> required />
+				<input type="password" name="pass" placeholder="Contraseña" required />
+				<div>
+                                    <!-- Se introduce el captcha -->
+                                    <image src="captcha/captcha.php" />
+                                    <input type="text" name="captcha" placeholder="Captcha" required />
+                                </div>
+                             <input type="submit" value="Acceder" name="log" />
+                            </form>
+                            </div>
+                            <div>
+				<a href="vistas/nuevo_usuario.php">No estoy registrado. Resgistrarme.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </body>
 </html>
