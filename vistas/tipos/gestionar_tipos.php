@@ -1,5 +1,6 @@
 <?php
     require_once '../../funciones/comprobarLog.php';
+    require_once '../../funciones/remplazarCaracteres.php';
     require_once '../../modelos/GestionImagen.php';
     require_once '../../modelos/TipoEnlace.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
@@ -14,7 +15,7 @@
     $idUsuario = $_SESSION['id_user'];
     //Se verifica si se ha recibido un nuevo enlace
     if(isset($_POST['anadir'])){;
-        $nombre = $_POST['nombre'];
+        $nombre = remplazarCaracteres($_POST['nombre']);
         $imagen = "";
         $c = false;//Variable para controlar la subida de la imagen
         //Se verifica si se ha recibido una imagen (por defecto PHP manda un archivo llamado '.' o '..')

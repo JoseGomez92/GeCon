@@ -1,4 +1,5 @@
 <?php
+    require_once '../../funciones/remplazarCaracteres.php';
     require_once '../../funciones/comprobarLog.php';
     require_once '../../modelos/GestionImagen.php';
     require_once '../../modelos/TipoEnlace.php';
@@ -17,7 +18,7 @@
         //Se recuperan los datos del tipo de enlace
         $idTipo = $_POST['id_tipo'];
         $idUsuario = $_POST['id_usuario'];
-        $nombre = $_POST['nombre'];
+        $nombre = remplazarCaracteres($_POST['nombre']);
         $imagen = $_POST['imagen'];
         //Se verifica si se ha recibido una imagen para poner esta
         if(isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['name'] != ''){

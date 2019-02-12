@@ -71,7 +71,7 @@
 									<input type="hidden" name="id_usuario" <?php echo 'value="'.$tipoEnlace->getIdUsuario().'"' ?> />
 									<input type="hidden" name="imagen" <?php echo 'value="'.$tipoEnlace->getImagen().'"' ?> />
 									<div style="text-align:center;">
-										<img height="150px" <?php echo 'src="../../recursos/iconos_tipos_enlaces/'.$tipoEnlace->getImagen().'">'; ?> />
+										<img height="150px" <?php echo 'src="../../recursos/iconos_tipos_enlaces/'.$tipoEnlace->getImagen().'"'; ?> />
 									</div>
 									<?php
 										//Se imprime el nombre del enlace
