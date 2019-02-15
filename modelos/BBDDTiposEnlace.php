@@ -93,7 +93,8 @@
             $nombre = $tipoEnlace->getNombre();
             $imagen = $tipoEnlace->getImagen();
             //Se forma la consulta
-            $consulta = "UPDATE tipos_enlace SET id_usuario=$idUsuario, nombre='$nombre', imagen='$imagen' WHERE id=$id";
+            $consulta = "UPDATE tipos_enlace SET nombre='$nombre', imagen='$imagen' WHERE id=$id";
+            echo $consulta;
             $datos = mysqli_query($this->conex, $consulta);
             //Se verifica el numero de registros insertados
             if(mysqli_affected_rows($this->conex) == 1){

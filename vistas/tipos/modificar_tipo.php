@@ -44,7 +44,7 @@
                 $mensaje = '<p class="mensaje-exito">Categoria modificada correctamente</p>';
             }
             else{
-                $mensaje = '<p class="mensaje-error">Error. No se pudo modificar la categoria</p>';
+                $mensaje = '<p class="mensaje-error">No se modificó la categoria</p>';
             }
         }
         else{

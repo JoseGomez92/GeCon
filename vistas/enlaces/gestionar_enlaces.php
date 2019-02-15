@@ -11,6 +11,8 @@
 ?>
 <?php
     $idUsuario = $_SESSION['id_user'];
+    $url = "";
+    $nombre = "";
     //Se verifica si se ha recibido un nuevo enlace
     if(isset($_POST['anadir'])){
         $idUsuario = $_SESSION['id_user'];
@@ -21,12 +23,7 @@
         $enlace = new Enlace(null, $idUsuario, $url, $nombre, $idTipo);
         //Se inserta en la BBDD
         $bbdd = new BBDDEnlaces();
-        if($bbdd->anadirEnlace($enlace)){
-            $mensaje = '<p class="mensaje-exito">Enlace añadido correctamente</p>';
-        }
-		else{
-			$mensaje = '<p class="mensaje-error">Error. No se pudo añadir el enlace</p>';
-		}
+        $mensaje = $bbdd->anadirEnlace($enlace);    
     }
 ?>
 <?php
@@ -77,10 +74,16 @@
 									//Se verifican que existan tipos de enlace para el usuario
 									if(count($arrayTipos) > 0){
 										echo '<form method="post">',
-											'<div>',
-												'<input type="url" name="url" placeholder="Direccion URL" required />',
-												'<input type="text" name="nombre" placeholder="Nombre para el enlace" required />',
-												'<select name="tipo">';
+											'<div>';
+                                                                                                if($url != "" and $nombre != ""){
+                                                                                                    echo '<input type="url" name="url" value="'.$url.'" required />';
+                                                                                                    echo '<input type="text" name="nombre" value="'.$nombre.'" required />';
+                                                                                                }
+                                                                                                else{
+                                                                                                    echo '<input type="url" name="url" placeholder="Direccion URL" required />';
+                                                                                                    echo '<input type="text" name="nombre" placeholder="Nombre para el enlace" required />';
+                                                                                                }
+												echo '<select name="tipo">';
 												//Se imprimen los tipos de enlace del usuario
 												foreach($arrayTipos as $tipoEnlace){
 													echo '<option value="'.$tipoEnlace->getId().'">'.$tipoEnlace->getNombre().'</option>';

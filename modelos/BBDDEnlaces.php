@@ -58,51 +58,75 @@
         /**
          * Metodo para añadir un enlace a la base de datos.
          * 
-         * Devuelve true si el enlace se ha añadido y false en caso contrario.
+         * Devuelve un mensaje con el resultado de la operacion de insercion
          * 
          * @param type $enlace
+         * @return string Mensaje con el resultado de la operacion
          */
         public function anadirEnlace($enlace){
-            $c = false;
+            $mensaje = "";
             //Valores del enlace recibido
             $idUsuario = $enlace->getIdUsuario();
             $url = $enlace->getUrl();
             $nombre = $enlace->getNombre();
             $idTipo = $enlace->getIdTipo();
-            //Se forma la consulta
-            $consulta = "INSERT INTO enlaces (id_usuario, url, nombre, id_tipo) VALUES ($idUsuario, '$url', '$nombre', $idTipo)";
+            //Se verifica que no exista ya un enlace con el mismo nombre o url en la misma catergoria para el usuario
+            $consulta = "SELECT * FROM enlaces WHERE (url='$url' OR nombre='$nombre') AND id_usuario=$idUsuario AND id_tipo=$idTipo";
             $datos = mysqli_query($this->conex, $consulta);
-            //Se verifica el numero de registros insertados
-            if(mysqli_affected_rows($this->conex) == 1){
-                $c = true;
+            if(mysqli_num_rows($datos) < 1){
+                //Se forma la consulta de insercion
+                $consulta = "INSERT INTO enlaces (id_usuario, url, nombre, id_tipo) VALUES ($idUsuario, '$url', '$nombre', $idTipo)";
+                $datos = mysqli_query($this->conex, $consulta);
+                //Se verifica el numero de registros insertados
+                if(mysqli_affected_rows($this->conex) == 1){
+                    $mensaje = '<p class="mensaje-exito">Enlace añadido correctamente</p>';
+                }
+                else{
+                    $mensaje = '<p class="mensaje-error">No se pudo añadir el enlace</p>';
+                }
             }
-            return $c;
+            else{
+                $mensaje = '<p class="mensaje-error">No se puede añadir un enlace con la misma direccion o nombre en la misma categoria</p>';
+            }
+            return $mensaje;
         }
          
         
-        /**
-         * Metodo para modificar un enlace de la BBDD (el recibido como parametro).
-         * 
-         * Devuelve true si el enlace se ha modificado y false en caso contrario.
-         * 
-         * @param type $enlace
-         * @return boolean
-         */
+       /**
+        * Metodo para modificar un enlace de la BBDD (el recibido como parametro).
+        * 
+        * Devuelve true si el enlace se ha modificado y false en caso contrario.
+        * 
+        * @param type $enlace
+        * @return string Mensaje con el resultado de la operacion
+        */
         public function modificarEnlace($enlace){
-            $c = false;
+            $mensaje = "";
             //Valores del enlace recibido
+            $idUsuario = $enlace->getIdUsuario();
             $idEnlace = $enlace->getId();
             $url = $enlace->getUrl();
             $nombre = $enlace->getNombre();
             $idTipo = $enlace->getIdTipo();
-            //Se forma la consulta
-            $consulta = "UPDATE enlaces SET url='$url', nombre='$nombre', id_tipo=$idTipo WHERE id=$idEnlace";
+            //Se verifica que no exista ya un enlace con el mismo nombre o url en la misma catergoria para el usuario
+            $consulta = "SELECT * FROM enlaces WHERE url='$url' AND nombre='$nombre' AND id_usuario=$idUsuario AND id_tipo=$idTipo";
             $datos = mysqli_query($this->conex, $consulta);
-            //Se verifica el numero de registros insertados
-            if(mysqli_affected_rows($this->conex) == 1){
-                $c = true;
+            if(mysqli_num_rows($datos) < 1){
+                //Se forma la consulta
+                $consulta = "UPDATE enlaces SET url='$url', nombre='$nombre', id_tipo=$idTipo WHERE id=$idEnlace";
+                $datos = mysqli_query($this->conex, $consulta);
+                //Se verifica el numero de registros insertados
+                if(mysqli_affected_rows($this->conex) == 1){
+                    $mensaje = '<p class="mensaje-exito">Enlace modificado correctamente</p>';
+                }
+                else{
+                    $mensaje = '<p class="mensaje-error">No se pudo modificar el enlace</p>';
+                }
             }
-            return $c;
+            else{
+                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otro enlace con la misma direccion o nombre en este categoria.</p>';
+            }
+            return $mensaje;
         }
         
         

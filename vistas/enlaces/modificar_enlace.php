@@ -22,12 +22,7 @@
         $enlace = new Enlace($idEnlace, $idUsuario, $url, $nombre, $idTipo);
         //Se obtiene la instancia del enlace de la BBDD
         $bbdd = new BBDDEnlaces();
-        if($bbdd->modificarEnlace($enlace)){
-            $mensaje = '<p class="mensaje-exito">Enlace modificado correctamente.</p>';
-        }
-        else{
-            $mensaje = '<p class="mensaje-error">Error. No se pudo modificar el Enlace.</p>';
-        }
+        $mensaje = $bbdd->modificarEnlace($enlace);        
     }
     else{
         //Se redirige a la pagina de gestion de tipos
