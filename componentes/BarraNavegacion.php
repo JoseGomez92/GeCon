@@ -21,7 +21,7 @@
             //Se obtiene la URI
             $uri = $_SERVER['PHP_SELF'];
             //Se obtiene la seccion actual
-            if(stripos($uri, 'ver_tipos_enlaces')) $seccionActual = 'Mis Enlaces';
+            if(stripos($uri, 'ver_tipos_enlaces') || stripos($uri, 'ver_enlaces_por_tipo')) $seccionActual = 'Mis Enlaces';
             else if(stripos($uri, 'enlaces')) $seccionActual = 'Gestionar Enlaces';
             else if(stripos($uri, 'tipos')) $seccionActual = 'Gestionar Categorias';
             return $seccionActual;
