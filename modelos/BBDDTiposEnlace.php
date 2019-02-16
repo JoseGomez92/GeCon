@@ -55,24 +55,35 @@
         /**
          * Metodo para añadir un tipo de enlace a la base de datos.
          * 
-         * Devuelve true si el tipo de enlace se ha añadido y false en caso contrario.
+         * Devuelve un mensaje con el resultado de la operacion.
          * 
          * @param type $enlace
          */
         public function anadirTipoEnlace($tipoEnlace){
-            $c = false;
+            $mensaje = "";
             //Valores del enlace recibido
             $idUsuario = $tipoEnlace->getIdUsuario();
             $nombre = $tipoEnlace->getNombre();
             $imagen = $tipoEnlace->getImagen();
-            //Se forma la consulta
-            $consulta = "INSERT INTO tipos_enlace (id_usuario, nombre, imagen) VALUES ($idUsuario, '$nombre', '$imagen')";
+            //Se verifica que no exista ya un tipo de enlace con el mismo nombre para el usuario
+            $consulta = "SELECT * FROM tipos_enlace WHERE nombre='$nombre' AND id_usuario=$idUsuario";
             $datos = mysqli_query($this->conex, $consulta);
-            //Se verifica el numero de registros insertados
-            if(mysqli_affected_rows($this->conex) == 1){
-                $c = true;
+            if(mysqli_num_rows($datos) < 1){
+                //Se forma la consulta
+                $consulta = "INSERT INTO tipos_enlace (id_usuario, nombre, imagen) VALUES ($idUsuario, '$nombre', '$imagen')";
+                $datos = mysqli_query($this->conex, $consulta);
+                //Se verifica el numero de registros insertados
+                if(mysqli_affected_rows($this->conex) == 1){
+                   $mensaje = '<p class="mensaje-exito">Categoria correctamente</p>';
+                }
+                else{
+                    $mensaje = '<p class="mensaje-error">No se pudo añadir la categoria</p>';
+                }
             }
-            return $c;
+            else{
+                $mensaje = '<p class="mensaje-error">No se puede añadir una categoria con el mismo nombre a una categoria ya existente</p>';
+            }
+            return $mensaje;
         }
          
         
@@ -80,27 +91,36 @@
          * Metodo para modificar un tipo de enlace de la BBDD cuyo id sea el del tipo de enlace recibido como
          * parametro (el id no se modificará, si el resto de campos).
          * 
-         * Devuelve true si el enlace se ha modificado y false en caso contrario.
+         * Devuelve un mensaje informando del resultado de la operacion.
          * 
          * @param type $enlace
-         * @return boolean
          */
         public function modificarTipoEnlace($tipoEnlace){
-            $c = false;
+            $mensaje = "";
             //Valores del enlace recibido
             $id = $tipoEnlace->getId();
             $idUsuario = $tipoEnlace->getIdUsuario();
             $nombre = $tipoEnlace->getNombre();
             $imagen = $tipoEnlace->getImagen();
-            //Se forma la consulta
-            $consulta = "UPDATE tipos_enlace SET nombre='$nombre', imagen='$imagen' WHERE id=$id";
-            echo $consulta;
+            //Se verifica que no exista ya un tipo de enlace con el mismo nombre para el usuario
+            $consulta = "SELECT * FROM tipos_enlace WHERE nombre='$nombre' AND id_usuario=$idUsuario";
             $datos = mysqli_query($this->conex, $consulta);
-            //Se verifica el numero de registros insertados
-            if(mysqli_affected_rows($this->conex) == 1){
-                $c = true;
+            if(mysqli_num_rows($datos) < 1){
+                //Se forma la consulta
+                $consulta = "UPDATE tipos_enlace SET nombre='$nombre', imagen='$imagen' WHERE id=$id";
+                $datos = mysqli_query($this->conex, $consulta);
+                //Se verifica el numero de registros insertados
+                if(mysqli_affected_rows($this->conex) == 1){
+                    $mensaje = '<p class="mensaje-exito">Categoria modificada correctamente</p>';
+                }
+                else{
+                    $mensaje = '<p class="mensaje-error">No se pudo modificar la categoria</p>';
+                }
             }
-            return $c;
+            else{
+                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otra categoria</p>';
+            }
+            return $mensaje;
         }
         
         

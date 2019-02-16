@@ -39,12 +39,7 @@
             //Se crea la instancia del tipo de enlace
             $tipoEnlace = new TipoEnlace(null, $idUsuario, $nombre, $imagen);
             //Se inserta en la BBDD        
-            if($bbdd->anadirTipoEnlace($tipoEnlace)){
-                $mensaje = '<p class="mensaje-exito">Categoria añadida correctamente</p>';
-            }
-            else{
-                $mensaje = '<p class="mensaje-error">Error al añadir la categoria. Esta no se añadió.</p>';
-            }  
+            $mensaje = $bbdd->anadirTipoEnlace($tipoEnlace); 
         }
     }
 ?>

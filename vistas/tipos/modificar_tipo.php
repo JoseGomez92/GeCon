@@ -36,19 +36,11 @@
             }
         }
         if($c){
-             //Se crea el tipo de enlace
+             //Se modifica el tipo de enlace
             $tipoEnlace = new TipoEnlace($idTipo, $idUsuario, $nombre, $imagen);
-            //Se recupera la instancia del enlace de la BBDD
+            //Se crea una instancia de la BBDD para operar con tipos de enlace
             $bbdd = new BBDDTiposEnlace();
-            if($bbdd->modificarTipoEnlace($tipoEnlace)){
-                $mensaje = '<p class="mensaje-exito">Categoria modificada correctamente</p>';
-            }
-            else{
-                $mensaje = '<p class="mensaje-error">No se modificó la categoria</p>';
-            }
-        }
-        else{
-            $mensaje = '<p class="mensaje-error">Error. El fichero indicado no es una imagen de tipo JPG o PNG. No se modificó el Tipo de Enlace</p>';
+            $mensaje = $bbdd->modificarTipoEnlace($tipoEnlace);
         }
     }
     else{

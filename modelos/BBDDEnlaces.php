@@ -95,7 +95,7 @@
        /**
         * Metodo para modificar un enlace de la BBDD (el recibido como parametro).
         * 
-        * Devuelve true si el enlace se ha modificado y false en caso contrario.
+        * Devuelve un mensaje con el resultado de la operacion
         * 
         * @param type $enlace
         * @return string Mensaje con el resultado de la operacion
@@ -124,7 +124,7 @@
                 }
             }
             else{
-                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otro enlace con la misma direccion o nombre en este categoria.</p>';
+                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otro enlace con la misma direccion o nombre en este categoria</p>';
             }
             return $mensaje;
         }
