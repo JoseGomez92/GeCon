@@ -186,6 +186,10 @@ section{
 	border-radius: 5px;
 }
 
+.contenedor-section-principal:nth-child(2){
+    margin-bottom: 30px;
+}
+
 .cabecera-seccion h3{
 	text-align: center;
 	text-transform: uppercase;
@@ -243,50 +247,54 @@ section{
 	font-weight: bold;
 }
 
-/*
-.lista-items-seccion li{
-	display: inline-block;
-	width: 48%;
-	position: relative;
+
+
+/************************************ FOOTER *********************************************/
+
+footer{
+	margin: auto;
+	margin-bottom: 30px;
+        padding: 20px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	background-color: #242424;
 }
 
-.lista-items-seccion li:nth-child(2n){
-	margin-left: 3%;
-}
-
-.lista-items-seccion img{
+.contenedor-footer{
 	width: 100%;
-	height: 100%;
-	border-radius: 5px;
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
 }
 
-.lista-items-seccion a{
-	position: absolute;
-	display: block;
-	width: 240px;
-	left: 50%;
-	margin-left: -120px;
-	height: 80px;
-	top: 35%;
-	line-height: 80px;
-	font-size: 24px;
-	text-align: center;
-	border-radius: 5px;
-	background-color: rgba(36,33,37,0.8);
-	transition: .1s;
+.contenedor-footer p{
+    font-size: 16px;
 }
 
-.lista-items-seccion li:hover img{
-	-webkit-filter: none;
-	filter: none;
+.footer-izq h3{
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-.lista-items-seccion a:hover{
-	background-color: rgba(36,33,37,1);
-	font-size: 26px;
-}*/
+.footer-der a{
+    width: 100%;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer-der a span{
+    transition: .1s;
+}
+
+.footer-der a:hover span{
+    color: darkgoldenrod;
+}
+
+.logo-git{
+	width: 30px;
+        margin-left: 10px;
+}
 
 
 

@@ -4,6 +4,7 @@
     require_once '../../modelos/BBDDEnlaces.php';
     require_once '../../modelos/BBDDTiposEnlace.php';
     require_once '../../componentes/BarraNavegacion.php';
+    require_once '../../componentes/PiePagina.php';
 ?>
 <?php
     //Se verifica que el usuario este registrado para acceder a la pagina
@@ -136,6 +137,10 @@
 					</div>
 				</div>
 			</section>
+                        <?php
+                            //Se pinta el pie de pagina
+                            echo PiePagina::obtenerPiePagina();
+                        ?>
         </div>
     </body>
 </html>
