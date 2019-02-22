@@ -45,7 +45,7 @@
 				<div class="contenedor-section">
 					<div class="contenedor-seccion-principal">
             			<div class="cabecera-seccion">
-                			<h3>¿Que quieres ver?</h3>
+                			<h3>¿Que quieres visitar?</h3>
             			</div>
             			<div class="cuerpo-seccion">
 							<?php
