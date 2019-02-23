@@ -7,16 +7,14 @@
         
         //Atributos
         private $id;
-        private $idUsuario;
         private $url;
         private $nombre;
         private $idTipo;
         
         
         //Metodos
-        public function __construct($id, $idUsuario, $url, $nombre, $idTipo) {
+        public function __construct($id, $url, $nombre, $idTipo) {
             $this->id = $id;
-            $this->idUsuario = $idUsuario;
             $this->url = $url;
             $this->nombre = $nombre;
             $this->idTipo = $idTipo;
@@ -24,10 +22,6 @@
         
         function getId() {
             return $this->id;
-        }
-        
-        function getIdUsuario() {
-            return $this->idUsuario;
         }
 
         function getUrl() {
@@ -44,10 +38,6 @@
 
         function setId($id) {
             $this->id = $id;
-        }
-        
-        function setIdUsuario($idUsuario) {
-            $this->idUsuario = $idUsuario;
         }
 
         function setUrl($url) {

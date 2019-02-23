@@ -39,9 +39,9 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificar o Borrar Enlaces</title>
-		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+        <link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css">
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <link type="text/css" rel="stylesheet" href="../../css/modificar_borrar_enlace.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
@@ -49,7 +49,7 @@
     <body>
         <div class="contenedor-body">
             <header>
-				<table class="contenedor-header">
+		<table class="contenedor-header">
 					<tr>
 						<td class="contenedor-logo">
 							<h3>Gecon</h3>
@@ -76,7 +76,6 @@
 									else echo '<form method="post" action="eliminar_enlace.php">';
 								?>
 									<input type="hidden" name="id_enlace" <?php echo 'value="'.$enlace->getId().'"' ?> />
-									<input type="hidden" name="id_usuario" <?php echo 'value="'.$enlace->getIdUsuario().'"'; ?> />
 									<?php
 										//Se imprime el nombre del enlace
 										if($accion == "modificar"){

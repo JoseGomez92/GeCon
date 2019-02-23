@@ -74,7 +74,7 @@
                 $datos = mysqli_query($this->conex, $consulta);
                 //Se verifica el numero de registros insertados
                 if(mysqli_affected_rows($this->conex) == 1){
-                   $mensaje = '<p class="mensaje-exito">Categoria correctamente</p>';
+                   $mensaje = '<p class="mensaje-exito">Categoria añadida correctamente</p>';
                 }
                 else{
                     $mensaje = '<p class="mensaje-error">No se pudo añadir la categoria</p>';
@@ -118,7 +118,7 @@
                 }
             }
             else{
-                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otra categoria</p>';
+                $mensaje = '<p class="mensaje-error">Los valores indicados ya coinciden con los de otra categoria. Esta </p>';
             }
             return $mensaje;
         }

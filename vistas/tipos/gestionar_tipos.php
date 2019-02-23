@@ -24,13 +24,15 @@
             //Se verifica que se ha recibido una imagen con extension PNG o JPG
             if(GestionImagen::comprobarExtensionImagen($_FILES['imagen'])){
                 //Se sube la imagen al servidor
-                $imagen = GestionImagen::subirImagen($_FILES['imagen'], $idUsuario, $nombre);
+                $nombreImagen = reemplazarEspacios($nombre);
+                $imagen = GestionImagen::subirImagen($_FILES['imagen'], $idUsuario, $nombreImagen);
                 $c = true;
             }
         }   
         else{
             //Se pone la imagen por defecto
-            $imagen = GestionImagen::subirImagenPorDefecto($idUsuario, $nombre);
+            $nombreImagen = reemplazarEspacios($nombre);
+            $imagen = GestionImagen::subirImagenPorDefecto($idUsuario, $nombreImagen);
             $c = true;
         }
         if(!$c){
@@ -49,87 +51,87 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Gestionar Categorias</title>
-		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
-		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+        <link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+	<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+	<link type="text/css" rel="stylesheet" href="../../css/reset.css">
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <link type="text/css" rel="stylesheet" href="../../css/gestion_tipos.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
     <body>
         <div class="contenedor-body">
-			<header>
-				<table class="contenedor-header">
-					<tr>
-						<td class="contenedor-logo">
-							<h3>Gecon</h3>
-						</td>
-						<td>
-							<?php echo BarraNavegacion::crearMenu(); ?>
-						</td>
-					</tr>
-				</table>
-			</header>
+            <header>
+		<table class="contenedor-header">
+                    <tr>
+			<td class="contenedor-logo">
+                            <h3>Gecon</h3>
+			</td>
+                        <td>
+                            <?php echo BarraNavegacion::crearMenu(); ?>
+                        </td>
+                    </tr>
+                </table>
+            </header>
             <section>
-				<div class="contenedor-section">
-					<div class="contenedor-seccion-principal">
-						<div class="cabecera-seccion">
-                			<h3>Añadir Categoria</h3>
-            			</div>
-						<div class="cuerpo-seccion">
-							<?php
-								if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
-							?>
-							<div>
-								<form method="post" action="gestionar_tipos.php" enctype="multipart/form-data">
-									<div>
-										<input type="text" name="nombre" placeholder="Nombre para el tipo de enlace" required />
-										<input type="file" name="imagen" />
-										<input type="submit" value="Añadir" name="anadir" />
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-					<div class="contenedor-seccion-principal">
-						<div class="cabecera-seccion">
-                			<h3>Gestionar Categorias</h3>
-            			</div>
-						<div class="cuerpo-seccion">
-							<div>
-								<?php
-									//Se obtienen los tipos de enlace de la BBDD
-									$arrayTipos = $bbdd->obtenerTiposEnlace($idUsuario);
-									$pathImagenes = "../../recursos/iconos_tipos_enlaces";
-									if(count($arrayTipos) > 0){
-										//Se muestran los tipos de enlace y las opciones para modificar y borrar
-										foreach ($arrayTipos as $tipo){
-											echo '<form class="form-modificar-tipo" method="post" action="modificar_borrar_tipo.php">',
-												'<input type="hidden" name="id_tipo" value="'.$tipo->getId().'" />',
-												'<p><b>Categoria:</b>'.$tipo->getNombre().'</p>',
-												'<div class="contenedor-icono">
-													<span><b>Icono:</b></span>
-													<span><img src="'.$pathImagenes.'/'.$tipo->getImagen().'" alt="'.$tipo->getImagen().'" /></span>
-												</div>',
-												'<input style="display:inline;" type="submit" name="modificar" value="Modificar" />',
-												'<input style="display:inline;" type="submit" name="eliminar" value="Eliminar" />',
-											'</form>';
-										}
-									}
-									else{
-										echo '<p>¡Oops! No ha registrado ninguna categoria. Añada una para poder añadir sus enlaces.</p>';
-									}
-								?>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-                        <?php
-                            //Se pinta el pie de pagina
-                            echo PiePagina::obtenerPiePagina();
-                        ?>
+		<div class="contenedor-section">
+                    <div class="contenedor-seccion-principal">
+			<div class="cabecera-seccion">
+                            <h3>Añadir Categoria</h3>
+            		</div>
+			<div class="cuerpo-seccion">
+                            <?php
+                                if(isset($mensaje)) echo '<div>'.$mensaje.'</div>';
+                            ?>
+                            <div>
+                                <form method="post" action="gestionar_tipos.php" enctype="multipart/form-data">
+                                    <div>
+					<input type="text" name="nombre" placeholder="Nombre para el tipo de enlace" required />
+					<input type="file" name="imagen" />
+                                        <input type="submit" value="Añadir" name="anadir" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedor-seccion-principal">
+			<div class="cabecera-seccion">
+                            <h3>Gestionar Categorias</h3>
+            		</div>
+			<div class="cuerpo-seccion">
+                            <div>
+				<?php
+                                    //Se obtienen los tipos de enlace de la BBDD
+                                    $arrayTipos = $bbdd->obtenerTiposEnlace($idUsuario);
+                                    $pathImagenes = "../../recursos/iconos_tipos_enlaces";
+                                    if(count($arrayTipos) > 0){
+					//Se muestran los tipos de enlace y las opciones para modificar y borrar
+					foreach ($arrayTipos as $tipo){
+                                            echo '<form class="form-modificar-tipo" method="post" action="modificar_borrar_tipo.php">',
+                                            '<input type="hidden" name="id_tipo" value="'.$tipo->getId().'" />',
+                                            '<p><b>Categoria:</b>'.$tipo->getNombre().'</p>',
+                                            '<div class="contenedor-icono">
+                                            <span><b>Icono:</b></span>
+                                            <span><img src="'.$pathImagenes.'/'.$tipo->getImagen().'" alt="'.$tipo->getImagen().'" /></span>
+                                            </div>',
+                                            '<input style="display:inline;" type="submit" name="modificar" value="Modificar" />',
+                                            '<input style="display:inline;" type="submit" name="eliminar" value="Eliminar" />',
+                                            '</form>';
+                                        }
+                                    }
+                                    else{
+                                        echo '<p>¡Oops! No ha registrado ninguna categoria. Añada una para poder añadir sus enlaces.</p>';
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+		</div>
+            </section>
+            <?php
+                //Se pinta el pie de pagina
+                echo PiePagina::obtenerPiePagina();
+            ?>
         </div>
     </body>
 </html>

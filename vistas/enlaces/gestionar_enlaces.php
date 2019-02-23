@@ -16,12 +16,11 @@
     $nombre = "";
     //Se verifica si se ha recibido un nuevo enlace
     if(isset($_POST['anadir'])){
-        $idUsuario = $_SESSION['id_user'];
         $url = $_POST['url'];
         $nombre = $_POST['nombre'];
         $idTipo = $_POST['tipo'];
         //Se crea la instancia del enlace
-        $enlace = new Enlace(null, $idUsuario, $url, $nombre, $idTipo);
+        $enlace = new Enlace(null, $url, $nombre, $idTipo);
         //Se inserta en la BBDD
         $bbdd = new BBDDEnlaces();
         $mensaje = $bbdd->anadirEnlace($enlace);    
@@ -35,7 +34,17 @@
 <?php
     //Bloque para obtener los enlaces del usuario
     $bbddEnlaces = new BBDDEnlaces();
-    $arrayEnlaces = $bbddEnlaces->obtenerEnlaces($idUsuario, '%');
+    //Se forma la cadena con los id's de los tipos del usuario
+    $idsTipos = "-1";
+    if(count($arrayTipos) > 0){
+        $idsTipos = "";
+        foreach($arrayTipos as $val){
+            $idsTipos .= $val->getId().',';
+        }
+        //Se suprime la ultima coma
+        $idsTipos = substr($idsTipos, 0, -1);
+    }
+    $arrayEnlaces = $bbddEnlaces->obtenerEnlaces($idsTipos);
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,7 +123,6 @@
 										foreach ($arrayEnlaces as $enlace){
 											echo '<form method="post" action="modificar_borrar_enlace.php">',
 												'<input type="hidden" name="id_enlace" value="'.$enlace->getId().'" />',
-												'<input type="hidden" name="id_usuaro" value="'.$enlace->getIdUsuario().'" />',
 												'<p><b>Nombre:</b>'.$enlace->getNombre().'</p>',
 												'<p><b>Url:</b>'.$enlace->getUrl().'</p>';
 												//Se busca el tipo de enlace para imprimir este

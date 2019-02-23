@@ -2,12 +2,17 @@
     require_once 'modelos/BBDDLog.php';
 ?>
 <?php
+    //Se inicia session
+    session_start();
     $user = "";
     $pass="";
+    //Se verifica si ya existe una session inciada
+    if(isset($_SESSION['id_user'])){
+        //Se redirige hacia el apartado para ver los tipos de enlaces
+        header('Location: vistas/enlaces/ver_tipos_enlaces.php');
+    }
     //Se verifica si se ha recibo el formulario
-    if(isset($_POST['log'])){
-        //Se inicia session
-        session_start();
+    else if(isset($_POST['log'])){
         //Se verifica que los credenciales sean correctos
         $user = $_POST['user'];
         $pass = $_POST['pass'];
@@ -18,7 +23,7 @@
             if(($id = $bd->comprobarLog($user, $pass)) != -1){
                 //Se guarda el id del usuario en la variable de session
                 $_SESSION['id_user'] = $id;
-                //Se redirige al menu
+                //Se redirige hacia el apartado para ver los tipos de enlaces
                 header('Location: vistas/enlaces/ver_tipos_enlaces.php');
             }
             else{
@@ -29,6 +34,7 @@
             $mensaje = '<p class="mensaje-error">El captcha que ha indicado es erroneo</p>';
         }
     }
+
 ?>
 <!DOCTYPE html>
 <html>

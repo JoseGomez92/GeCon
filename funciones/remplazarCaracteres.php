@@ -14,7 +14,7 @@
         array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
         $cadena);
         //Se eliminan los acentos en la é, É...
-         $cadena = str_replace(
+        $cadena = str_replace(
         array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
         array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
         $cadena);
@@ -43,6 +43,21 @@
         array('´','\'', '^', '$', '#', '@'),
         array('', '', '', '', '', 'a'),
         $cadena);
+        return $cadena;
+    }
+    
+    
+    /**
+     * Función para eliminar los espacios en blanco de la cadena recibida como parametro.
+     * 
+     * Devuelve la cadena recibida sin espacios
+     * 
+     * @param type $cadea
+     * @return type
+     */
+    function reemplazarEspacios($cadena){
+        //Se eliminan los espacios en la cadena
+        $cadena = str_replace(array(' '), array(''), $cadena);
         return $cadena;
     }
 

@@ -12,13 +12,12 @@
 ?>
 <?php
     $idTipo = "";
-    $idUsuario = $_SESSION['id_user'];
     $pathImagenFondo = "";
     //Bloque para obtener los enlaces del usuario
     if(isset($_GET['tipo'])){
         $idTipo = $_GET['tipo'];
         $bbddEnlaces = new BBDDEnlaces();
-        $arrayEnlaces = $bbddEnlaces->obtenerEnlaces($idUsuario, $idTipo);
+        $arrayEnlaces = $bbddEnlaces->obtenerEnlaces($idTipo);
         //Se recupera la instancia del tipo de enlace de la BBDD
         $bbdd = new BBDDTiposEnlace();
         $tipoEnlace = $bbdd->obtenerTipoEnlace($idTipo);

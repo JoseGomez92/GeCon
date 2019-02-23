@@ -15,12 +15,11 @@
     if(isset($_POST['id_enlace'])){
         //Se recuperan los datos del tipo de enlace
         $idEnlace = $_POST['id_enlace'];
-        $idUsuario = $_POST['id_usuario'];
         $url = $_POST['url'];
         $nombre = $_POST['nombre'];
         $idTipo = $_POST['id_tipo'];
         //Se crea el tipo de enlace
-        $enlace = new Enlace($idEnlace, $idUsuario, $url, $nombre, $idTipo);
+        $enlace = new Enlace($idEnlace, $url, $nombre, $idTipo);
         //Se obtiene la instancia del enlace de la BBDD
         $bbdd = new BBDDEnlaces();
         $mensaje = $bbdd->modificarEnlace($enlace);        

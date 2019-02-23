@@ -25,7 +25,7 @@
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){
                 $reg = mysqli_fetch_array($datos);
-                $enlace = new Enlace($reg['id'], $reg['id_usuario'], $reg['url'], $reg['nombre'], $reg['id_tipo']);
+                $enlace = new Enlace($reg['id'], $reg['url'], $reg['nombre'], $reg['id_tipo']);
             }
             return $enlace;
         }
@@ -35,18 +35,17 @@
          * Metodo para obtener un array de instancias (objetos) de tipo enlace con los enlaces del usuario 
          * en base al tipo de interes indicado o todos (si no se indica ningun tipo concreto).
          * 
-         * @param type $idUser
          * @param type $interes
          */
-        public function obtenerEnlaces($idUser, $interes){
+        public function obtenerEnlaces($idsTipos){
             //Array donde se volcarán los enlaces
             $arrayEnlaces = array();
-            $consulta = "SELECT * FROM enlaces WHERE id_usuario=$idUser AND id_tipo LIKE '$interes' ORDER BY nombre ASC";
+            $consulta = "SELECT * FROM enlaces WHERE id_tipo IN ($idsTipos) ORDER BY nombre ASC";
             //Obtenemos los registros
             $datos = mysqli_query($this->conex,$consulta);
             if(mysqli_num_rows($datos) > 0){
                 while($reg = mysqli_fetch_array($datos)){
-                    $enlace = new Enlace($reg['id'], $reg['id_usuario'], $reg['url'], $reg['nombre'], $reg['id_tipo']);
+                    $enlace = new Enlace($reg['id'], $reg['url'], $reg['nombre'], $reg['id_tipo']);
                     //Se añaden nombre del enlace y la url al array asociativo de valores
                     $arrayEnlaces[] = $enlace;
                 }   
@@ -66,16 +65,15 @@
         public function anadirEnlace($enlace){
             $mensaje = "";
             //Valores del enlace recibido
-            $idUsuario = $enlace->getIdUsuario();
             $url = $enlace->getUrl();
             $nombre = $enlace->getNombre();
             $idTipo = $enlace->getIdTipo();
             //Se verifica que no exista ya un enlace con el mismo nombre o url en la misma catergoria para el usuario
-            $consulta = "SELECT * FROM enlaces WHERE (url='$url' OR nombre='$nombre') AND id_usuario=$idUsuario AND id_tipo=$idTipo";
+            $consulta = "SELECT * FROM enlaces WHERE (url='$url' OR nombre='$nombre') AND id_tipo=$idTipo";
             $datos = mysqli_query($this->conex, $consulta);
             if(mysqli_num_rows($datos) < 1){
                 //Se forma la consulta de insercion
-                $consulta = "INSERT INTO enlaces (id_usuario, url, nombre, id_tipo) VALUES ($idUsuario, '$url', '$nombre', $idTipo)";
+                $consulta = "INSERT INTO enlaces (url, nombre, id_tipo) VALUES ('$url', '$nombre', $idTipo)";
                 $datos = mysqli_query($this->conex, $consulta);
                 //Se verifica el numero de registros insertados
                 if(mysqli_affected_rows($this->conex) == 1){
@@ -103,13 +101,12 @@
         public function modificarEnlace($enlace){
             $mensaje = "";
             //Valores del enlace recibido
-            $idUsuario = $enlace->getIdUsuario();
             $idEnlace = $enlace->getId();
             $url = $enlace->getUrl();
             $nombre = $enlace->getNombre();
             $idTipo = $enlace->getIdTipo();
             //Se verifica que no exista ya un enlace con el mismo nombre o url en la misma catergoria para el usuario
-            $consulta = "SELECT * FROM enlaces WHERE url='$url' AND nombre='$nombre' AND id_usuario=$idUsuario AND id_tipo=$idTipo";
+            $consulta = "SELECT * FROM enlaces WHERE url='$url' AND nombre='$nombre' AND id_tipo=$idTipo";
             $datos = mysqli_query($this->conex, $consulta);
             if(mysqli_num_rows($datos) < 1){
                 //Se forma la consulta
