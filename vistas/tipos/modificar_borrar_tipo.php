@@ -30,7 +30,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificar o Borrar Categorias</title>
@@ -40,7 +39,6 @@
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
     </head>
-
     <body>
         <div class="contenedor-body">
             <header>
@@ -101,5 +99,4 @@
             ?>
         </div>
     </body>
-
 </html>

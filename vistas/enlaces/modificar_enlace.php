@@ -34,9 +34,9 @@
     <head>
         <meta charset="UTF-8">
         <title>GeCon - Modificacion de Enlaces</title>
-		<link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
+        <link type="image" rel="shortcut icon" href="../../recursos/imagenes_pagina/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" href="../../css/reset.css">
+        <link type="text/css" rel="stylesheet" href="../../css/reset.css">
         <link type="text/css" rel="stylesheet" href="../../css/styles.css">
         <link type="text/css" rel="stylesheet" href="../../css/borrado_modificado.css">
         <script type="text/javascript" src="../../js/redireccionar.js"></script>
@@ -44,36 +44,36 @@
     <body>
         <div class="contenedor-body">
             <header>
-				<table class="contenedor-header">
-					<tr>
-						<td class="contenedor-logo">
-							<h3>Gecon</h3>
-						</td>
-						<td>
-							<?php echo BarraNavegacion::crearMenu(); ?>
-						</td>
-					</tr>
-				</table>
-			</header>
-			<section>
-				<div class="contenedor-section">
-					<div class="contenedor-seccion-principal">
-						<div class="cabecera-seccion">
-                			<h3>Modificación de Enlace</h3>
-            			</div>
-						<div class="cuerpo-seccion">
-							<?php if(isset($mensaje)) echo '<div>'.$mensaje.'</div>'; ?>
-							<div>
-								<a href="gestionar_enlaces.php">Volver</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-                        <?php
-                            //Se pinta el pie de pagina
-                            echo PiePagina::obtenerPiePagina();
-                        ?>
+                <table class="contenedor-header">
+                    <tr>
+                        <td class="contenedor-logo">
+                            <h3>Gecon</h3>
+                        </td>
+                        <td>
+                            <?php echo BarraNavegacion::crearMenu(); ?>
+                        </td>
+                    </tr>
+                </table>
+            </header>
+            <section>
+                <div class="contenedor-section">
+                    <div class="contenedor-seccion-principal">
+                        <div class="cabecera-seccion">
+                            <h3>Modificación de Enlace</h3>
+                        </div>
+                        <div class="cuerpo-seccion">
+                            <?php if (isset($mensaje)) echo '<div>' . $mensaje . '</div>'; ?>
+                            <div>
+                                <a href="gestionar_enlaces.php">Volver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <?php
+                //Se pinta el pie de pagina
+                echo PiePagina::obtenerPiePagina();
+            ?>
         </div>
     </body>
 </html>
