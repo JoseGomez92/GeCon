@@ -1,0 +1,19 @@
+span b{
+	color: darkgoldenrod;
+}
+
+.contenedor-icono{
+	margin-top: 30px;
+	display: flex;
+  	flex-wrap: wrap;
+}
+
+.contenedor-icono span{
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+}
+
+.contenedor-icono img{
+	height: 100px;
+}
