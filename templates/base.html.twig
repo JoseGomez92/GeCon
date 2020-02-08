@@ -11,23 +11,41 @@
             <link type="text/css" rel="stylesheet" href="{{ asset('css/background.css') }}" />
         {% endblock %}
         <style>
-            {% block styles %}
-                body{
-                    color: #f0f0f0;
-                }
-                header, section, footer{
-                    margin-top: 30px;
-                }
+            html{
+                font-size: 16px;
+            }
 
-                footer{
-                    margin-bottom: 30px;
-                }
+            body{
+                color: #f0f0f0;
+            }
 
-                a{
-                    text-decoration: none;
-	                color: inherit;
-                }
-            {% endblock %}
+            header, section, footer{
+                margin-top: 30px;
+                background-color: #242424;
+            }
+
+            footer{
+                margin-bottom: 30px;
+            }
+
+            a{
+                text-decoration: none;
+                color: inherit;
+            }
+
+            #nav-bar{
+                height: 70px;
+            }
+
+            #nav-bar h3{
+                font-size: 36px;
+            }
+
+            #nav-bar a{
+                text-align: center;
+            }
+
+            {% block styles %}{% endblock %}
         </style>
         {% block javascripts_header %}
             <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -38,34 +56,34 @@
     <body>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="row col-12">
-                    <header class="row col-12 p-2 navbar-dark bg-dark rounded">
+                <div class="row col-10">
+                    <header class="row col-12 p-2 navbar-dark rounded">
                         {% block header %}
-                            <nav class="navbar navbar-expand-lg">
-                                <a class="navbar-brand" href="#">
-                                    <h3>GECON</h3>
+                            <nav id="nav-bar" class="navbar navbar-expand-lg px-3 py-0">
+                                <a class="col-3 navbar-brand" href="#">
+                                    <h3 class="text-center">Gecon</h3>
                                 </a>
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item m-2">
+                                <ul class="col-9 navbar-nav justify-content-between align-items-center">
+                                    <li class="nav-item m-3">
                                         <a class="nav-link">Mis Enlaces</a>
                                     </li>
-                                    <li class="nav-item m-2">
+                                    <li class="nav-item m-3">
                                         <a class="nav-link">Gestionar Enlaces</a>
                                     </li>
-                                    <li class="nav-item m-2">
+                                    <li class="nav-item m-3">
                                         <a class="nav-link">Gestionar Categorias</a>
                                     </li>
-                                    <li class="nav-item m-2">
+                                    <li class="nav-item m-3">
                                         <a class="nav-link">Salir</a>
                                     </li>
                                 </ul>
                             </nav>
                         {% endblock %}
                     </header>
-                    <section class="row col-12 p-2 bg-dark rounded">
+                    <section class="row col-12 p-3 rounded">
                         {% block section %}{% endblock %}
                     </section>
-                    <footer class="row col-12 p-4 bg-dark rounded">
+                    <footer class="row col-12 p-4 rounded">
                         {% block footer %}
                             <div class="row col-12 justify-content-center">
                                 <h3>GECON</h3>
