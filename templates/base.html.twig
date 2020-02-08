@@ -8,37 +8,26 @@
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet" />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}" />
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/font_size.css') }}" />
             <link type="text/css" rel="stylesheet" href="{{ asset('css/background.css') }}" />
         {% endblock %}
         <style>
-            html{
-                font-size: 16px;
-            }
-
             body{
                 color: #f0f0f0;
             }
 
             header, section, footer{
-                margin-top: 30px;
+                margin-top: 1.8rem;
                 background-color: #242424;
             }
 
             footer{
-                margin-bottom: 30px;
-            }
-
-            a{
-                text-decoration: none;
-                color: inherit;
+                margin-bottom: 1.8rem;
             }
 
             #nav-bar{
                 height: 70px;
-            }
-
-            #nav-bar h3{
-                font-size: 36px;
             }
 
             #nav-bar a{
@@ -57,11 +46,12 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="row col-10">
-                    <header class="row col-12 p-2 navbar-dark rounded">
-                        {% block header %}
+
+                    {% block header %}
+                        <header class="row col-12 p-2 navbar-dark rounded">
                             <nav id="nav-bar" class="navbar navbar-expand-lg px-3 py-0">
-                                <a class="col-3 navbar-brand" href="#">
-                                    <h3 class="text-center">Gecon</h3>
+                                <a class="col-3 navbar-brand" href="{{ path('inicio') }}">
+                                    <h3 class="text-center font-xxl">Gecon</h3>
                                 </a>
                                 <ul class="col-9 navbar-nav justify-content-between align-items-center">
                                     <li class="nav-item m-3">
@@ -78,28 +68,32 @@
                                     </li>
                                 </ul>
                             </nav>
-                        {% endblock %}
-                    </header>
-                    <section class="row col-12 p-3 rounded">
-                        {% block section %}{% endblock %}
-                    </section>
-                    <footer class="row col-12 p-4 rounded">
-                        {% block footer %}
+                        </header>
+                    {% endblock %}
+                
+                    {% block section %}
+                        <section class="row col-12 p-3 rounded">
+                            {% block container_section %}{% endblock %}
+                        </section>
+                    {% endblock %}
+                    
+                    {% block footer %}
+                        <footer class="row col-12 p-4 rounded">
                             <div class="row col-12 justify-content-center">
                                 <h3>GECON</h3>
                             </div>
                             <div class="row col-12 justify-content-center">
                                 <a href="https://github.com/JoseGomez92" target="_blank">
-                                    <span>Jose Gomez Gonzalez - 2019</span>
+                                    <span class="font-s">Jose Gomez Gonzalez - 2019</span>
                                     <img class="logo-git" width="30px" height="30px" src="https://image.flaticon.com/icons/svg/23/23957.svg">
                                 </a>
                             </div>
-                        {% endblock %}
-                    </footer>
+                        </footer>
+                    {% endblock %}
+                    
                 </div>
             </div>
         </div>
-
         {% block javascripts_body %}{% endblock %}
     </body>
 </html>
