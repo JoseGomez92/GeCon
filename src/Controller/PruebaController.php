@@ -4,8 +4,17 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class PruebaController{
+class PruebaController  extends AbstractController
+{
+
+    /**
+     * @Route("/inicio", name="inicio")
+     */
+    public function inicio(){
+        return $this->render('principal.html.twig');
+    }
 
     /**
      * @Route("/prueba/{n}", name="prueba")

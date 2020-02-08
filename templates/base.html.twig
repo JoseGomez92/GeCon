@@ -2,11 +2,86 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>GeCon - {% block title %}{% endblock %}</title>
+        <link type="image" rel="shortcut icon" href="{{ asset('img/favicon.png') }}" />
+        {% block stylesheets %}
+            <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&amp;subset=latin-ext" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+            <link type="text/css" rel="stylesheet" href="{{ asset('css/background.css') }}" />
+        {% endblock %}
+        <style>
+            {% block styles %}
+                body{
+                    color: #f0f0f0;
+                }
+                header, section, footer{
+                    margin-top: 30px;
+                }
+
+                footer{
+                    margin-bottom: 30px;
+                }
+
+                a{
+                    text-decoration: none;
+	                color: inherit;
+                }
+            {% endblock %}
+        </style>
+        {% block javascripts_header %}
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="row col-12">
+                    <header class="row col-12 p-2 navbar-dark bg-dark rounded">
+                        {% block header %}
+                            <nav class="navbar navbar-expand-lg">
+                                <a class="navbar-brand" href="#">
+                                    <h3>GECON</h3>
+                                </a>
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item m-2">
+                                        <a class="nav-link">Mis Enlaces</a>
+                                    </li>
+                                    <li class="nav-item m-2">
+                                        <a class="nav-link">Gestionar Enlaces</a>
+                                    </li>
+                                    <li class="nav-item m-2">
+                                        <a class="nav-link">Gestionar Categorias</a>
+                                    </li>
+                                    <li class="nav-item m-2">
+                                        <a class="nav-link">Salir</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        {% endblock %}
+                    </header>
+                    <section class="row col-12 p-2 bg-dark rounded">
+                        {% block section %}{% endblock %}
+                    </section>
+                    <footer class="row col-12 p-4 bg-dark rounded">
+                        {% block footer %}
+                            <div class="row col-12 justify-content-center">
+                                <h3>GECON</h3>
+                            </div>
+                            <div class="row col-12 justify-content-center">
+                                <a href="https://github.com/JoseGomez92" target="_blank">
+                                    <span>Jose Gomez Gonzalez - 2019</span>
+                                    <img class="logo-git" width="30px" height="30px" src="https://image.flaticon.com/icons/svg/23/23957.svg">
+                                </a>
+                            </div>
+                        {% endblock %}
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        {% block javascripts_body %}{% endblock %}
     </body>
 </html>
