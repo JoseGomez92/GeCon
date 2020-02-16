@@ -4,6 +4,35 @@
 
 {% block header %}{% endblock %}
 
-{% block container_section %}{% endblock %}
+{% block container_section %}
+
+    <div id="container-form" class="row col-12 my-4">
+        <div class="col-12 mb-4">
+            <h3 class="text-center font-xxxl">GECON</h3>
+        </div>
+        <div class="col-12 mb-2">
+            <form method="post" action="{{ path('login') }}">
+                <div class="form-group col-6 mx-auto mb-4">
+                    <input type="text" class="form-control" name="user" placeholder="Usuario" />
+                </div>
+                <div class="form-group col-6 mx-auto mb-4">
+                    <input type="password" class="form-control" name="pass" placeholder="Contraseña" required />
+                </div>
+                <div class="form-group col-6 mx-auto mb-4">
+                    <image class="d-block mx-auto mb-3" src="{{ captcha }}" alt="captcha" />
+                    <input type="text" class="form-control" name="captcha" required />
+                    <small class="form-text text-muted">Inserte los caracteres de la imagen superior.</small>
+                </div>
+                <div class="form-group col-2 mx-auto mb-4">
+                    <input type="submit" class="form-control" value="Acceder" name="log" />
+                </div>
+            </form>
+        </div>
+        <div class="col-12 text-center">
+            <a href="{{ path('signIn') }}">No estoy registrado. Resgistrarme.</a>
+        </div>
+    </div>
+
+{% endblock %}
 
 {% block footer %}{% endblock %}

@@ -5,10 +5,10 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\Captcha;
 
 class PruebaController extends AbstractController
 {
-
 
     /**
      * @Route("/login", name="login")
@@ -29,8 +29,11 @@ class PruebaController extends AbstractController
     /**
      * @Route("/sign_in", name="signIn")
      */
-    public function signIn(){
-        return $this->render('sign_in.html.twig');
+    public function signIn(Captcha $captchaService){
+        $captchaImage = $captchaService->getCaptchaJpegBase64();
+        return $this->render('sign_in.html.twig', [
+            'captcha' => $captchaImage
+        ]);
     }
 
 
